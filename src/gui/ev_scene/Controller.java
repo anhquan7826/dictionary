@@ -44,9 +44,7 @@ public class Controller implements Initializable {
     @Deprecated
     @FXML
     public void resultOnType() {
-        search.textProperty().addListener((observableValue, s, t1) -> {
-            searchResult.getItems().setAll(Operate.EVDictionary.searchWord(t1));
-        });
+        searchResult.getItems().setAll(Operate.EVDictionary.searchWord(search.getText()));
     }
 
     @FXML
