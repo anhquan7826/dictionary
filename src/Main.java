@@ -1,0 +1,21 @@
+import dictionary.Operate;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Operate.initOperation();
+        Parent root = FXMLLoader.load(getClass().getResource("gui/ev_scene/mainframe.fxml"));
+        primaryStage.setTitle("Test");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+}
