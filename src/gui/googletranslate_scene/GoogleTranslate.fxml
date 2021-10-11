@@ -11,7 +11,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="gui.googletranslate_scene.Controller">
   <tabs>
-    <Tab text="Dịch Anh - Việt">
+    <Tab text="Vietnamese - English">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -20,13 +20,13 @@
                         <VBox prefHeight="370.0" prefWidth="293.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="31.0" prefWidth="292.0" text="Vietnamese" />
-                              <TextField fx:id="target" alignment="TOP_LEFT" onKeyPressed="#translateEV" prefHeight="338.0" prefWidth="294.0" />
+                              <TextField fx:id="targetVE" alignment="TOP_LEFT" onKeyPressed="#translateVE" prefHeight="338.0" prefWidth="294.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="370.0" prefWidth="306.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="34.0" prefWidth="306.0" text="English" />
-                              <WebView fx:id="explain" prefHeight="334.0" prefWidth="306.0" />
+                              <WebView fx:id="explainVE" prefHeight="334.0" prefWidth="306.0" />
                            </children>
                         </VBox>
                      </children>
@@ -34,10 +34,29 @@
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Dịch Việt Anh">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
-    </Tab>
+      <Tab text="English - Vietnamese">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <HBox prefHeight="370.0" prefWidth="600.0">
+                     <children>
+                        <VBox prefHeight="370.0" prefWidth="293.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="31.0" prefWidth="292.0" text="English" />
+                              <TextField fx:id="targetEV" alignment="TOP_LEFT" onKeyPressed="#translateEV" prefHeight="338.0" prefWidth="294.0" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="370.0" prefWidth="306.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="306.0" text="Vietnamese" />
+                              <WebView fx:id="explainEV" prefHeight="334.0" prefWidth="306.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
   </tabs>
 </TabPane>

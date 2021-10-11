@@ -19,11 +19,16 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    TextField target = new TextField();
+    TextField targetVE = new TextField();
 
     @FXML
-    WebView explain = new WebView();
+    WebView explainVE = new WebView();
 
+    @FXML
+    TextField targetEV = new TextField();
+
+    @FXML
+    WebView explainEV = new WebView();
 
     private static String translate (String langFrom, String langTo, String text) throws IOException {
 
@@ -45,11 +50,19 @@ public class Controller implements Initializable {
         return response.toString();
     }
 
+    public void translateVE(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)){
+            String meaning = targetVE.getText();
+            WebEngine engine = explainVE.getEngine();
+            explainVE.getEngine().loadContent(translate("vi","en", meaning) , "text/html");
+        }
+    }
+
     public void translateEV(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)){
-            String meaning = target.getText();
-            WebEngine engine = explain.getEngine();
-            explain.getEngine().loadContent(translate("vi","en", meaning) , "text/html");
+            String meaning = targetEV.getText();
+            WebEngine engine = explainEV.getEngine();
+            explainEV.getEngine().loadContent(translate("en","vi", meaning) , "text/html");
         }
     }
 
@@ -58,6 +71,5 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-
 
 }
