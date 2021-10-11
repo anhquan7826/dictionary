@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ve_scene.Controller">
+   <center>
+      <Pane>
+         <children>
+            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0">
+               <left>
+                  <VBox prefHeight="400.0" prefWidth="190.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="search" alignment="CENTER" onKeyTyped="#resultOnType" promptText="Tìm kiếm" />
+                        <ListView fx:id="searchResult" onMouseClicked="#showSelectedWord" prefHeight="529.0" prefWidth="190.0" />
+                     </children>
+                  </VBox>
+               </left>
+               <center>
+                  <WebView fx:id="viewWord" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+      </Pane>
+   </center>
+   <top>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuButton mnemonicParsing="false" text="Chọn chế độ">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Từ điển E-V" />
+                <MenuItem mnemonicParsing="false" text="Từ điển V-E" />
+              </items>
+            </MenuButton>
+            <Label alignment="CENTER" prefHeight="24.0" prefWidth="524.0" text="Từ điển Vietnamese - English" textAlignment="CENTER" />
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

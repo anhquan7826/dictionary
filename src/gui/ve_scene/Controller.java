@@ -1,4 +1,4 @@
-package gui.ev_scene;
+package gui.ve_scene;
 
 import dictionary.Operate;
 import dictionary.manager.word.Word;
@@ -36,7 +36,7 @@ public class Controller implements Initializable {
             if (search.getText().isBlank()) {
                 searchResult.getItems().clear();
             } else {
-                searchResult.getItems().setAll(Operate.EVDictionary.searchWord(search.getText().trim()));
+                searchResult.getItems().setAll(Operate.VEDictionary.searchWord(search.getText().trim()));
             }
         }
     }
@@ -46,14 +46,14 @@ public class Controller implements Initializable {
         if (search.getText().isBlank()) {
             searchResult.getItems().clear();
         } else {
-            searchResult.getItems().setAll(Operate.EVDictionary.searchWord(search.getText()));
+            searchResult.getItems().setAll(Operate.VEDictionary.searchWord(search.getText()));
         }
     }
 
     @FXML
     public void showSelectedWord() {
         String key = searchResult.getSelectionModel().getSelectedItem();
-        Word word = Operate.EVDictionary.getWord(key);
+        Word word = Operate.VEDictionary.getWord(key);
         engine.loadContent(word.getWord_explain(), "text/html");
     }
 }

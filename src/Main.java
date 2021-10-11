@@ -13,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Operate.initOperation();
-        Parent root = FXMLLoader.load(getClass().getResource("gui/ev_scene/mainframe.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("gui/ve_scene/scene.fxml"));
         primaryStage.setTitle("Test");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

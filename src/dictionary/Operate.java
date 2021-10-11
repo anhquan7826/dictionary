@@ -34,7 +34,7 @@ public class Operate {
 
     public static class VEDictionary {
         public static Word getWord(String key) {
-            return EVdict.getWord(key);
+            return VEdict.getWord(key);
         }
 
         public static List<String> searchWord(String query) {

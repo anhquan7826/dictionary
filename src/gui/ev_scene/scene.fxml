@@ -6,12 +6,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ev_scene.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ev_scene.Controller">
    <left>
       <VBox prefHeight="400.0" prefWidth="190.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="search" onKeyTyped="#resultOnType" />
-            <ListView fx:id="searchResult" onMouseClicked="#showSelectedWord" />
+            <ListView fx:id="searchResult" onMouseClicked="#showSelectedWord" prefHeight="493.0" prefWidth="190.0" />
          </children>
       </VBox>
    </left>
