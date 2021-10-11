@@ -15,8 +15,9 @@ public class Operate {
 
     public static void initOperation() {}
 
+    // Khong import duoc translate.class
     public static class Translate {
-        public static String translate(String langFrom, String langTo, String text){
+        public static String translate (String langFrom, String langTo, String text){
             return trans.translate(langFrom, langTo, text);
         }
     }
