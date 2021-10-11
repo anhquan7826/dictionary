@@ -4,6 +4,7 @@ import dictionary.manager.EVDictMgr;
 import dictionary.manager.FavoriteMgr;
 import dictionary.manager.VEDictMgr;
 import dictionary.manager.word.Word;
+import dictionary.manager.TranslateMgr;
 
 import java.util.List;
 
@@ -11,11 +12,10 @@ public class Operate {
     private static EVDictMgr EVdict = new EVDictMgr();
     private static VEDictMgr VEdict = new VEDictMgr();
     private static FavoriteMgr fav = new FavoriteMgr();
-    private static Translate  trans = new Translate();
+    private static TranslateMgr trans = new TranslateMgr();
 
     public static void initOperation() {}
 
-    // Khong import duoc translate.class
     public static class Translate {
         public static String translate (String langFrom, String langTo, String text){
             return trans.translate(langFrom, langTo, text);

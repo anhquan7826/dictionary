@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class Translate {
+public class TranslateMgr {
 
     private static String translate(String langFrom, String langTo, String text) throws IOException {
 
