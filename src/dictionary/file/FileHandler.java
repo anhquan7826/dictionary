@@ -1,17 +1,11 @@
 package dictionary.file;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import dictionary.manager.word.Word;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-
-import dictionary.manager.word.Word;
 
 public class FileHandler {
     // file paths
@@ -27,6 +21,7 @@ public class FileHandler {
 
     /**
      * reading dictionary data file.
+     *
      * @param filePath file path.
      */
     public void readData(String filePath) {
@@ -53,6 +48,7 @@ public class FileHandler {
 
     /**
      * read data from E-V dictionary file.
+     *
      * @return a Treemap of E-V data.
      */
     public Map<String, Word> getDataEV() {
@@ -62,6 +58,7 @@ public class FileHandler {
 
     /**
      * read data from V-E dictionary file.
+     *
      * @return a Treemap of V-E data.
      */
     public Map<String, Word> getDataVE() {
@@ -73,14 +70,13 @@ public class FileHandler {
 
     /**
      * read stored favorite word from file.
-     * @param filepath path to file.
      */
     public void readFavorite() {
         try {
             FileReader fis = new FileReader(FAV_PATH);
             BufferedReader br = new BufferedReader(fis);
             String line;
-            while ((line = br.readLine())!= null) {
+            while ((line = br.readLine()) != null) {
                 data.put(line, null);
             }
             br.close();
@@ -93,6 +89,7 @@ public class FileHandler {
 
     /**
      * write a word to favorite list.
+     *
      * @param favorite word to write into.
      */
     public void writeFavorite(String favorite) {
@@ -103,7 +100,7 @@ public class FileHandler {
         data.put(favorite, null);
         try {
             FileWriter writer = new FileWriter(FAV_PATH);
-            writer.write(favorite + "\n");   
+            writer.write(favorite + "\n");
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,6 +109,7 @@ public class FileHandler {
 
     /**
      * get an arraylist of favorite word.
+     *
      * @return arraylist of string.
      */
     public ArrayList<String> getFavorite() {
@@ -121,6 +119,7 @@ public class FileHandler {
 
     /**
      * add a word to favorite list.
+     *
      * @param favorite word.
      */
     public void addFavorite(String favorite) {
@@ -129,6 +128,7 @@ public class FileHandler {
 
     /**
      * remove a word from favorite.
+     *
      * @param favorite word.
      */
     public void removeFavorite(String favorite) {
@@ -136,20 +136,20 @@ public class FileHandler {
             try {
                 File inputFile = new File(FAV_PATH);
                 File tempFile = new File("temp.txt");
-        
+
                 BufferedReader reader = new BufferedReader(new FileReader(inputFile));
                 BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-        
+
                 String currentLine;
-        
-                while((currentLine = reader.readLine()) != null) {
+
+                while ((currentLine = reader.readLine()) != null) {
                     // trim newline when comparing with lineToRemove
                     String trimmedLine = currentLine.trim();
-                    if(trimmedLine.equals(favorite)) continue;
+                    if (trimmedLine.equals(favorite)) continue;
                     writer.write(currentLine + System.getProperty("line.separator"));
                 }
-                writer.close(); 
-                reader.close(); 
+                writer.close();
+                reader.close();
                 tempFile.renameTo(inputFile);
             } catch (Exception e) {
                 e.printStackTrace();

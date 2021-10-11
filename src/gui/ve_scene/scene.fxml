@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ve_scene.Controller">
    <center>
       <Pane>
@@ -20,7 +19,7 @@
                <left>
                   <VBox prefHeight="400.0" prefWidth="190.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField fx:id="search" alignment="CENTER" onKeyTyped="#resultOnType" promptText="Tìm kiếm" />
+                        <TextField fx:id="search" alignment="TOP_LEFT" onKeyTyped="#resultOnType" promptText="Tìm kiếm" />
                         <ListView fx:id="searchResult" onMouseClicked="#showSelectedWord" prefHeight="529.0" prefWidth="190.0" />
                      </children>
                   </VBox>
