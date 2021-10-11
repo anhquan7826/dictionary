@@ -1,18 +1,25 @@
 package dictionary;
 
-import java.util.List;
-
 import dictionary.manager.EVDictMgr;
 import dictionary.manager.FavoriteMgr;
 import dictionary.manager.VEDictMgr;
 import dictionary.manager.word.Word;
 
+import java.util.List;
+
 public class Operate {
     private static EVDictMgr EVdict = new EVDictMgr();
     private static VEDictMgr VEdict = new VEDictMgr();
     private static FavoriteMgr fav = new FavoriteMgr();
+    private static Translate  trans = new Translate();
 
     public static void initOperation() {}
+
+    public static class Translate {
+        public static String translate(String langFrom, String langTo, String text){
+            return trans.translate(langFrom, langTo, text);
+        }
+    }
 
     public static class EVDictionary {
         public static Word getWord(String key) {
