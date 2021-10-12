@@ -1,19 +1,30 @@
 package dictionary.manager;
 
-import java.util.*;
-
 import dictionary.file.FileHandler;
+import dictionary.manager.word.Word;
+
+import java.io.IOException;
+import java.util.Map;
 
 public class FavoriteMgr {
-    private FileHandler reader = new FileHandler();
-    private List<String> data = reader.getFavorite();
+    private FileHandler file = new FileHandler();
+    private Map<String, Word> data = file.getDataFav();
 
     /**
      * add a word to favorite.
      * @param word word.
      */
-    public void addWord(String word) {
-        reader.addFavorite(word);
+    public void addWord(Word word) {
+        data.put(word.getWord_target(), word);
+    }
+
+    /**
+     * get word
+     * @param key key
+     * @return value
+     */
+    public Word getWord(String key) {
+        return data.get(key);
     }
 
     /**
@@ -21,24 +32,22 @@ public class FavoriteMgr {
      * @param word
      */
     public void removeWord(String word) {
-        reader.removeFavorite(word);
+        data.remove(word);
     }
 
     /**
      * get all favorite words.
      * @return list of strings
      */
-    public List<String> getAll() {
+    public Map<String, Word> getDataFavorite() {
         return data;
     }
 
-    /** 
-     * print all, for testing purpose.
+    /**
+     * update favorite data. should be used when quit.
+     * @throws IOException
      */
-    @Deprecated
-    public void printAll() {
-        for (String fav : data) {
-            System.out.println(fav);
-        }
+    public void updateData() throws IOException {
+        file.writeDataFav();
     }
 }

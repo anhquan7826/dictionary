@@ -3,7 +3,6 @@ package dictionary.file;
 import dictionary.manager.word.Word;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -47,6 +46,20 @@ public class FileHandler {
     }
 
     /**
+     * writing data to file.
+     * @param path file path
+     * @throws IOException
+     */
+    public void writeData(String path) throws IOException {
+        FileWriter writer = new FileWriter(path);
+        BufferedWriter buffer = new BufferedWriter(writer);
+        for (var i : data.entrySet()) {
+            buffer.write(i.getValue().getWord_target() + i.getValue().getWord_explain() + "\n");
+        }
+        buffer.close();
+    }
+
+    /**
      * read data from E-V dictionary file.
      *
      * @return a Treemap of E-V data.
@@ -54,6 +67,14 @@ public class FileHandler {
     public Map<String, Word> getDataEV() {
         readData(EV_PATH);
         return data;
+    }
+
+    /**
+     * write current data to E-V dictionary file
+     * @throws IOException
+     */
+    public void writeDataEV() throws IOException {
+        writeData(EV_PATH);
     }
 
     /**
@@ -66,94 +87,28 @@ public class FileHandler {
         return data;
     }
 
-    // this path below is for reading and writing to favorite file.
-
     /**
-     * read stored favorite word from file.
+     * write current data to V-E dictionary file
+     * @throws IOException
      */
-    public void readFavorite() {
-        try {
-            FileReader fis = new FileReader(FAV_PATH);
-            BufferedReader br = new BufferedReader(fis);
-            String line;
-            while ((line = br.readLine()) != null) {
-                data.put(line, null);
-            }
-            br.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void writeDataVE() throws IOException {
+        writeData(VE_PATH);
     }
 
     /**
-     * write a word to favorite list.
-     *
-     * @param favorite word to write into.
+     * read data from favorite file
+     * @return a Treemap of favorite
      */
-    public void writeFavorite(String favorite) {
-        favorite = favorite.toLowerCase();
-        if (data.containsKey(favorite)) {
-            return;
-        }
-        data.put(favorite, null);
-        try {
-            FileWriter writer = new FileWriter(FAV_PATH);
-            writer.write(favorite + "\n");
-            writer.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public Map<String, Word> getDataFav() {
+        readData(FAV_PATH);
+        return data;
     }
 
     /**
-     * get an arraylist of favorite word.
-     *
-     * @return arraylist of string.
+     * write data to favorite file
+     * @throws IOException
      */
-    public ArrayList<String> getFavorite() {
-        readFavorite();
-        return new ArrayList<>(data.keySet());
-    }
-
-    /**
-     * add a word to favorite list.
-     *
-     * @param favorite word.
-     */
-    public void addFavorite(String favorite) {
-        writeFavorite(favorite);
-    }
-
-    /**
-     * remove a word from favorite.
-     *
-     * @param favorite word.
-     */
-    public void removeFavorite(String favorite) {
-        if (data.containsKey(favorite)) {
-            try {
-                File inputFile = new File(FAV_PATH);
-                File tempFile = new File("temp.txt");
-
-                BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-
-                String currentLine;
-
-                while ((currentLine = reader.readLine()) != null) {
-                    // trim newline when comparing with lineToRemove
-                    String trimmedLine = currentLine.trim();
-                    if (trimmedLine.equals(favorite)) continue;
-                    writer.write(currentLine + System.getProperty("line.separator"));
-                }
-                writer.close();
-                reader.close();
-                tempFile.renameTo(inputFile);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+    public void writeDataFav() throws IOException {
+        writeData(FAV_PATH);
     }
 }

@@ -8,7 +8,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
@@ -16,10 +15,10 @@ import java.util.ResourceBundle;
 
 public class ControllerTextToSpeech implements Initializable {
     @FXML
-    private  ListView English = new ListView();
+    private  ListView <String> English = new ListView();
     @FXML
     private  WebView VN = new WebView();
-    private WebEngine engine;
+//    private WebEngine engine = VN.getEngine();
     @FXML
     private  TextField search = new TextField();
 
@@ -28,31 +27,43 @@ public class ControllerTextToSpeech implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-
-    public void resultOnEnter(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            if (search.getText().isBlank()) {
-                English.getItems().clear();
-            } else {
-                English.getItems().setAll(Operate.EVDictionary.searchWord(search.getText().trim()));
-            }
+//     Speak vs tu trong text field
+    public void testspeak(KeyEvent event){
+        if (event.getCode().equals(KeyCode.ENTER)){
+            String s = search.getText();
+            Operate.TextToSpeech.Speak(s);
         }
     }
+    // Speak vs tu duoc chon trong textfield
+    public void speaktest(){
+        String s =  English.getSelectionModel().getSelectedItem();
+        Operate.TextToSpeech.Speak(s);
+    }
 
+
+
+//    public void resultOnEnter(KeyEvent event) {
+//        if (event.getCode().equals(KeyCode.ENTER)) {
+//            if (search.getText().isBlank()) {
+//                English.getItems().clear();
+//            } else {
+//                English.getItems().setAll(Operate.EVDictionary.searchWord(search.getText().trim()));
+//            }
+//        }
+//    }
+    @FXML
     public void resultOnType() {
         if (search.getText().isBlank()) {
-            English.getItems().setAll(Operate.EVDictionary.getDataDictionary.keySet());
+            English.getItems().clear();
         } else {
             English.getItems().setAll(Operate.EVDictionary.searchWord(search.getText()));
         }
     }
-
+    @FXML
     public void showSelectedWord() {
         String key = English.getSelectionModel().getSelectedItem();
         Word word = Operate.EVDictionary.getWord(key);
-        engine.loadContent(word.getWord_explain(), "text/html");
+        VN.getEngine().loadContent(word.getWord_explain(), "text/html");
     }
-
-
 
 }
