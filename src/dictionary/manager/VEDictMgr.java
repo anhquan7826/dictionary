@@ -1,10 +1,10 @@
 package dictionary.manager;
 
-import java.io.IOException;
-import java.util.*;
-
 import dictionary.file.FileHandler;
 import dictionary.manager.word.Word;
+
+import java.io.IOException;
+import java.util.*;
 
 public class VEDictMgr {
     private FileHandler file = new FileHandler();

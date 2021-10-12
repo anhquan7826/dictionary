@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.textToSpeechTest_scene.ControllerTextToSpeech">
+   <children>
+      <TextField fx:id="search" layoutX="35.0" layoutY="54.0" onKeyPressed="#testspeak" onKeyTyped="#resultOnType" />
+      <ListView fx:id="English" layoutX="23.0" layoutY="93.0" onMouseClicked="#showSelectedWord" prefHeight="286.0" prefWidth="238.0" />
+      <WebView fx:id="VN" layoutX="289.0" layoutY="100.0" prefHeight="286.0" prefWidth="290.0" />
+      <Button layoutX="195.0" layoutY="54.0" mnemonicParsing="false" onAction="#speaktest" text="Phat am" />
+      <Label alignment="CENTER" layoutX="48.0" layoutY="26.0" prefHeight="18.0" prefWidth="274.0" text="TEST TTS" />
+   </children>
+</AnchorPane>
