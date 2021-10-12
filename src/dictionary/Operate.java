@@ -51,6 +51,10 @@ public class Operate {
         public static void updateData() throws IOException {
             EVdict.updateData();
         }
+
+        public static Map<String, Word> getData() {
+            return EVdict.getDataDictionary();
+        }
     }
 
     public static class VEDictionary {
@@ -80,6 +84,10 @@ public class Operate {
         public static void updateData() throws IOException {
             VEdict.updateData();
         }
+
+        public static Map<String, Word> getData() {
+            return VEdict.getDataDictionary();
+        }
     }
 
     public static class Favorite {
@@ -95,7 +103,7 @@ public class Operate {
             fav.removeWord(word);
         }
 
-        public static Map<String, Word> getAll() {
+        public static Map<String, Word> getData() {
             return fav.getDataFavorite();
         }
 

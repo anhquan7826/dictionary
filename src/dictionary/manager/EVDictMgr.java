@@ -70,7 +70,6 @@ public class EVDictMgr {
      * get map of dictionary.
      * @return a TreeMap.
      */
-    @Deprecated
     public Map<String, Word> getDataDictionary() {
         return data;
     }
