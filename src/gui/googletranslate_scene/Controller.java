@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.io.BufferedReader;
@@ -53,7 +52,6 @@ public class Controller implements Initializable {
     public void translateVE(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)){
             String meaning = targetVE.getText();
-            WebEngine engine = explainVE.getEngine();
             explainVE.getEngine().loadContent(translate("vi","en", meaning) , "text/html");
         }
     }
@@ -61,7 +59,6 @@ public class Controller implements Initializable {
     public void translateEV(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)){
             String meaning = targetEV.getText();
-            WebEngine engine = explainEV.getEngine();
             explainEV.getEngine().loadContent(translate("en","vi", meaning) , "text/html");
         }
     }
@@ -69,7 +66,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
 }
