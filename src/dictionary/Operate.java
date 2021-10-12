@@ -6,6 +6,7 @@ import dictionary.manager.VEDictMgr;
 import dictionary.manager.word.Word;
 import dictionary.manager.TranslateMgr;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Operate {
@@ -17,7 +18,7 @@ public class Operate {
     public static void initOperation() {}
 
     public static class Translate {
-        public static String translate (String langFrom, String langTo, String text){
+        public static String translate(String langFrom, String langTo, String text) throws IOException {
             return trans.translate(langFrom, langTo, text);
         }
     }
@@ -70,5 +71,9 @@ public class Operate {
         public static List<String> getAll() {
             return fav.getAll();
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println(Translate.translate("en", "vi", "what if i was a robot and i didn't know it?"));
     }
 }
