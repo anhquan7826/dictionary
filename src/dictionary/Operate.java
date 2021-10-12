@@ -15,12 +15,11 @@ public class Operate {
     private static VEDictMgr VEdict = new VEDictMgr();
     private static FavoriteMgr fav = new FavoriteMgr();
     private static TranslateMgr trans = new TranslateMgr();
-    private static TextToSpeechMgr tts = new TextToSpeechMgr();
 
     public static void initOperation() {}
     public static class  TextToSpeech{
         public static void Speak(String text){
-            tts.Speak(text);
+            TextToSpeechMgr.Speak(text);
         }
     }
 
