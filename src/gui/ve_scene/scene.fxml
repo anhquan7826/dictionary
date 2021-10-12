@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
 
@@ -45,4 +46,7 @@
          </children>
       </HBox>
    </top>
+   <bottom>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="633.7294921875" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
