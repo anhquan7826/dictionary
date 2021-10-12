@@ -34,10 +34,13 @@ public class ControllerTextToSpeech implements Initializable {
             Operate.TextToSpeech.Speak(s);
         }
     }
-    // Speak vs tu duoc chon trong textfield
+    // Speak vs tu duoc chon trong listvr
     public void speaktest(){
         String s =  English.getSelectionModel().getSelectedItem();
-        Operate.TextToSpeech.Speak(s);
+        if (s!= null){
+            Operate.TextToSpeech.Speak(s);
+        }
+
     }
 
 
