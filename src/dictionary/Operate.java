@@ -8,6 +8,7 @@ import dictionary.manager.TranslateMgr;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class Operate {
     private static EVDictMgr EVdict = new EVDictMgr();
@@ -36,8 +37,19 @@ public class Operate {
             EVdict.addWord(word, meaning);
         }
 
+        public static void editWord(String target, String explain) {
+            EVdict.editWord(target, explain);
+            if (fav.getDataFavorite().containsKey(target)) {
+                fav.getDataFavorite().replace(target, EVdict.getWord(target));
+            }
+        }
+
         public static void deleteWord(String word) {
             EVdict.deleteWord(word);
+        }
+
+        public static void updateData() throws IOException {
+            EVdict.updateData();
         }
     }
 
@@ -54,13 +66,28 @@ public class Operate {
             VEdict.addWord(word, meaning);
         }
 
+        public static void editWord(String target, String explain) {
+            VEdict.editWord(target, explain);
+            if (fav.getDataFavorite().containsKey(target)) {
+                fav.getDataFavorite().replace(target, VEdict.getWord(target));
+            }
+        }
+
         public static void deleteWord(String word) {
             VEdict.deleteWord(word);
+        }
+
+        public static void updateData() throws IOException {
+            VEdict.updateData();
         }
     }
 
     public static class Favorite {
-        public static void addWord(String word) {
+        public static Word getWord(String key) {
+            return fav.getWord(key);
+        }
+
+        public static void addWord(Word word) {
             fav.addWord(word);
         }
 
@@ -68,12 +95,12 @@ public class Operate {
             fav.removeWord(word);
         }
 
-        public static List<String> getAll() {
-            return fav.getAll();
+        public static Map<String, Word> getAll() {
+            return fav.getDataFavorite();
         }
-    }
 
-    public static void main(String[] args) throws Exception {
-        System.out.println(Translate.translate("en", "vi", "what if i was a robot and i didn't know it?"));
+        public static void updateData() throws IOException {
+            fav.updateData();
+        }
     }
 }

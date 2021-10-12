@@ -1,13 +1,14 @@
 package dictionary.manager;
 
+import java.io.IOException;
 import java.util.*;
 
 import dictionary.file.FileHandler;
 import dictionary.manager.word.Word;
 
 public class VEDictMgr {
-    private FileHandler readDataVE = new FileHandler();
-    private Map<String, Word> data = readDataVE.getDataVE();
+    private FileHandler file = new FileHandler();
+    private Map<String, Word> data = file.getDataVE();
 
     /**
      * search words using a query.
@@ -24,15 +25,6 @@ public class VEDictMgr {
         return listWord;
     }
 
-    /** 
-     * don't use this unless you need to.
-     */
-    @Deprecated
-    public void printAll() {
-        Set<String> allWord = data.keySet();
-        System.out.print(Arrays.toString(allWord.toArray()));
-    }
-
     /**
      * add a word to the dictionary.
      * @param word word.
@@ -41,13 +33,29 @@ public class VEDictMgr {
     public void addWord(String word, String meaning) {
         meaning = "<html><i>" + word
                 + "</i><br/><ul><li><font color='#cc0000'><b>"
-                + word + "</b></font></li></ul></html>";
+                + meaning + "</b></font></li></ul></html>";
         // replace entry if already exist.
         if (data.containsKey(word)) {
             data.replace(word, new Word(word, meaning));
         } else {
             data.put(word, new Word (word, meaning));
         }
+    }
+
+    /**
+     * get word
+     * @param key key
+     * @return value
+     */
+    public Word getWord(String key) {
+        return data.get(key);
+    }
+
+    public void editWord(String target, String explain) {
+        Word word = getWord(target);
+        word.setWord_explain("<html><i>" + target
+        + "</i><br/><ul><li><font color='#cc0000'><b>"
+        + explain + "</b></font></li></ul></html>");
     }
 
     /**
@@ -67,12 +75,20 @@ public class VEDictMgr {
         return data;
     }
 
-    /**
-     * get word
-     * @param key key
-     * @return value
+    /** 
+     * don't use this unless you need to.
      */
-    public Word getWord(String key) {
-        return data.get(key);
+    @Deprecated
+    public void printAll() {
+        Set<String> allWord = data.keySet();
+        System.out.print(Arrays.toString(allWord.toArray()));
+    }
+
+    /**
+     * update dictionary data. should be used when quit.
+     * @throws IOException
+     */
+    public void updateData() throws IOException {
+        file.writeDataVE();
     }
 }
