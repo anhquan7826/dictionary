@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class TestTTS extends Application {
 
     public static void main(String[] args) {
@@ -14,7 +16,7 @@ public class TestTTS extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         Operate.initOperation();
         Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
         primaryStage.setTitle("TTS");

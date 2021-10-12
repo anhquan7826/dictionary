@@ -8,6 +8,7 @@ import dictionary.manager.TranslateMgr;
 import dictionary.manager.TextToSpeechMgr;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class Operate {
     private static EVDictMgr EVdict = new EVDictMgr();
@@ -15,13 +16,12 @@ public class Operate {
     private static FavoriteMgr fav = new FavoriteMgr();
     private static TranslateMgr trans = new TranslateMgr();
     private static TextToSpeechMgr tts = new TextToSpeechMgr();
+
     public static void initOperation() {}
-
-    public static class TextToSpeech{
-        public static void Speak (String text){
-            tts.Speek(text);
+    public static class  TextToSpeech{
+        public static void Speak(String text){
+            tts.Speak(text);
         }
-
     }
 
     public static class Translate {
@@ -43,10 +43,24 @@ public class Operate {
             EVdict.addWord(word, meaning);
         }
 
+        public static void editWord(String target, String explain) {
+            EVdict.editWord(target, explain);
+            if (fav.getDataFavorite().containsKey(target)) {
+                fav.getDataFavorite().replace(target, EVdict.getWord(target));
+            }
+        }
+
         public static void deleteWord(String word) {
             EVdict.deleteWord(word);
         }
 
+        public static void updateData() throws IOException {
+            EVdict.updateData();
+        }
+
+        public static Map<String, Word> getData() {
+            return EVdict.getDataDictionary();
+        }
     }
 
     public static class VEDictionary {
@@ -62,13 +76,32 @@ public class Operate {
             VEdict.addWord(word, meaning);
         }
 
+        public static void editWord(String target, String explain) {
+            VEdict.editWord(target, explain);
+            if (fav.getDataFavorite().containsKey(target)) {
+                fav.getDataFavorite().replace(target, VEdict.getWord(target));
+            }
+        }
+
         public static void deleteWord(String word) {
             VEdict.deleteWord(word);
+        }
+
+        public static void updateData() throws IOException {
+            VEdict.updateData();
+        }
+
+        public static Map<String, Word> getData() {
+            return VEdict.getDataDictionary();
         }
     }
 
     public static class Favorite {
-        public static void addWord(String word) {
+        public static Word getWord(String key) {
+            return fav.getWord(key);
+        }
+
+        public static void addWord(Word word) {
             fav.addWord(word);
         }
 
@@ -76,12 +109,14 @@ public class Operate {
             fav.removeWord(word);
         }
 
-        public static List<String> getAll() {
-            return fav.getAll();
+        public static Map<String, Word> getData() {
+            return fav.getDataFavorite();
+        }
+
+        public static void updateData() throws IOException {
+            fav.updateData();
         }
     }
+    public static void main(String[] args){}
 
-    public static void main(String[] args) throws Exception {
-        System.out.println(Translate.translate("en", "vi", "what if i was a robot and i didn't know it?"));
-    }
 }

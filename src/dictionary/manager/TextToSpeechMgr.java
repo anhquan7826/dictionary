@@ -7,8 +7,8 @@ import java.util.Locale;
 
 public class TextToSpeechMgr {
 
-    // https://www.javatpoint.com/convert-text-to-speech-in-java tham khao tai day
-    public static void Speek (String text) {
+    // https://www.javatpoint.com/convert-text-to-speech-in-java tham khao tai lieu tai day
+    public static void Speak (String text) {
         try {
             // Set property as Kevin Dictionary
             System.setProperty(
@@ -39,8 +39,8 @@ public class TextToSpeechMgr {
             synthesizer.waitEngineState(
                     Synthesizer.QUEUE_EMPTY);
 
-            // Deallocate the Synthesizer.
-            synthesizer.deallocate();
+            // Deallocate the Synthesizer. NEU THEM DONG NAY THI LOI (THEM THI SET DIEU KIEN STOP)
+//            synthesizer.deallocate();
         }
 
         catch (Exception e) {
