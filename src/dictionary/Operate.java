@@ -5,7 +5,7 @@ import dictionary.manager.FavoriteMgr;
 import dictionary.manager.VEDictMgr;
 import dictionary.manager.word.Word;
 import dictionary.manager.TranslateMgr;
-
+import dictionary.manager.TextToSpeechMgr;
 import java.io.IOException;
 import java.util.List;
 
@@ -14,8 +14,15 @@ public class Operate {
     private static VEDictMgr VEdict = new VEDictMgr();
     private static FavoriteMgr fav = new FavoriteMgr();
     private static TranslateMgr trans = new TranslateMgr();
-
+    private static TextToSpeechMgr tts = new TextToSpeechMgr();
     public static void initOperation() {}
+
+    public static class TextToSpeech{
+        public static void Speak (String text){
+            tts.Speek(text);
+        }
+
+    }
 
     public static class Translate {
         public static String translate(String langFrom, String langTo, String text) throws IOException {
@@ -39,6 +46,7 @@ public class Operate {
         public static void deleteWord(String word) {
             EVdict.deleteWord(word);
         }
+
     }
 
     public static class VEDictionary {
