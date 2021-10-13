@@ -38,7 +38,6 @@ public class FileHandler {
                 Word wordObj = new Word(word, word_explain);
                 data.put(word, wordObj);
             }
-
             br.close();
         } catch (Exception e) {
             e.printStackTrace();
