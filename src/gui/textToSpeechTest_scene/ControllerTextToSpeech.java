@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class ControllerTextToSpeech implements Initializable {
     @FXML
-    private  ListView <String> English = new ListView();
+    private  ListView <String> English = new ListView<>();
     @FXML
     private  WebView VN = new WebView();
 //    private WebEngine engine = VN.getEngine();
