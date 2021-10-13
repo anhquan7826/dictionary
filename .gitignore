@@ -1,9 +1,5 @@
-# .idea folder
 /.idea
-
-# out folder
 /out
-
 /.vscode
-
 /bin
+dictionary.iml
