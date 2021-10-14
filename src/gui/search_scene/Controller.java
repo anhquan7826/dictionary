@@ -53,15 +53,14 @@ public class Controller implements Initializable {
     @FXML
     public void chooseEV() {
         dictChoice.setText(Type.EV);
-        favCheckBox.setDisable(false);
         search.clear();
         searchResult.getItems().setAll(Operate.Dictionary.getData(Type.EV).keySet());
     }
     @FXML
     public void chooseVE() {
         dictChoice.setText(Type.VE);
-        favCheckBox.setDisable(true);
         search.clear();
+        speakButton.setDisable(true);
         searchResult.getItems().setAll(Operate.Dictionary.getData(Type.VE).keySet());
     }
 

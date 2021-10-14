@@ -45,7 +45,7 @@ public class Operate {
 
     public static class Dictionary {
         public static Word getWord(String type, String key) {
-            if (type == Type.EV) {
+            if (type.equals(Type.EV)) {
                 return EVdict.getWord(key);
             } else {
                 return VEdict.getWord(key);
@@ -53,7 +53,7 @@ public class Operate {
         }
 
         public static List<String> searchWord(String type, String query) {
-            if (type == Type.EV) {
+            if (type.equals(Type.EV)) {
                 return EVdict.searchWord(query);
             } else {
                 return VEdict.searchWord(query);
@@ -61,7 +61,7 @@ public class Operate {
         }
 
         public static void addWord(String type, String target, String explain) {
-            if (type == Type.EV) {
+            if (type.equals(Type.EV)) {
                 EVdict.addWord(target, explain);
             } else {
                 VEdict.addWord(target, explain);
@@ -69,7 +69,7 @@ public class Operate {
         }
 
         public static void editWord(String type, String target, String explain) {
-            if (type == Type.EV) {
+            if (type.equals(Type.EV)) {
                 EVdict.editWord(target, explain);
                 if (EVfav.getData().containsKey(target)) {
                     EVfav.editWord(target, explain);
@@ -83,7 +83,7 @@ public class Operate {
         }
 
         public static void deleteWord(String type, String word) {
-            if (type == Type.EV) {
+            if (type.equals(Type.EV)) {
                 EVdict.deleteWord(word);
                 if (EVfav.getData().containsKey(word)) {
                     EVfav.deleteWord(word);
@@ -97,7 +97,7 @@ public class Operate {
         }
 
         public static Map<String, Word> getData(String type) {
-            if (type == Type.EV) {
+            if (type.equals(Type.EV)) {
                 return EVdict.getData();
             } else {
                 return VEdict.getData();
@@ -107,7 +107,7 @@ public class Operate {
 
     public static class Favorite {
         public static Word getWord(String type, String key) {
-            if (type == Type.EVFav) {
+            if (type.equals(Type.EVFav)) {
                 return EVfav.getWord(key);
             } else {
                 return VEfav.getWord(key);
@@ -115,7 +115,7 @@ public class Operate {
         }
 
         public static void addWord(String type, String target, String explain) {
-            if (type == Type.EVFav) {
+            if (type.equals(Type.EVFav)) {
                 EVfav.addWord(target, explain);
             } else {
                 VEfav.addWord(target, explain);
@@ -123,7 +123,7 @@ public class Operate {
         }
 
         public static void deleteWord(String type, String word) {
-            if (type == Type.EVFav) {
+            if (type.equals(Type.EVFav)) {
                 EVfav.deleteWord(word);
             } else {
                 VEfav.deleteWord(word);
@@ -131,7 +131,7 @@ public class Operate {
         }
 
         public static Map<String, Word> getData(String type) {
-            if (type == Type.EVFav) {
+            if (type.equals(Type.EVFav)) {
                 return EVfav.getData();
             } else {
                 return VEfav.getData();
