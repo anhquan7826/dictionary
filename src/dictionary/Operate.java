@@ -116,6 +116,4 @@ public class Operate {
             fav.updateData();
         }
     }
-    public static void main(String[] args){}
-
 }
