@@ -103,7 +103,7 @@
                <top>
                   <AnchorPane prefHeight="14.0" prefWidth="491.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button layoutX="18.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" text="Phát âm" />
+                        <Button fx:id="speakButton" layoutX="18.0" mnemonicParsing="false" onAction="#speakOnPress" prefHeight="26.0" prefWidth="77.0" text="Phát âm" />
                         <CheckBox fx:id="favCheckBox" layoutX="388.0" layoutY="4.0" mnemonicParsing="false" onAction="#favCheckBoxOnAction" text="Yêu thích" />
                      </children>
                   </AnchorPane>

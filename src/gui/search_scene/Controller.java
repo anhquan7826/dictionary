@@ -172,4 +172,15 @@ public class Controller implements Initializable {
         historyStack.clear();
         historyList.getItems().clear();
     }
+
+    // speak field
+    @FXML
+    private Button speakButton = new Button();
+
+    @FXML
+    public void speakOnPress() {
+        if (wordBeingDisplayed != null) {
+            Operate.TextToSpeech.Speak(wordBeingDisplayed.getWord_target());
+        }
+    }
 }
