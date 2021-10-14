@@ -16,7 +16,7 @@ public class test extends Application {
 
     @Override
     public void start(Stage primaryStage)throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GGTScene.fxml"));
         primaryStage.setTitle("Test");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
