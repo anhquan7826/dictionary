@@ -36,6 +36,7 @@ public class Controller implements Initializable {
     public void translateEV(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)){
             String meaning = targetEV.getText();
+//            System.out.println(meaning);
             explainEV.getEngine().loadContent(Operate.Translate.translate("en","vi", meaning) , "text/html");
         }
     }
