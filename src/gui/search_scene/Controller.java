@@ -26,6 +26,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         searchResult.getItems().setAll(Operate.Dictionary.getData(Type.EV).keySet());
+        favList.getItems().setAll(Operate.Favorite.getData(Type.EV).keySet());
     }
 
     private Word wordBeingDisplayed;
@@ -33,7 +34,7 @@ public class Controller implements Initializable {
     private void showSelectedWord(String selectedItem) {
         if (selectedItem == null) {return;}
         wordBeingDisplayed = Operate.Dictionary.getWord(dictChoice.getText(), selectedItem);
-        if (Operate.Favorite.getData(dictChoice.getText()).containsKey(selectedItem)) {
+        if (Operate.Favorite.getData(Type.convert(dictChoice.getText())).containsKey(selectedItem)) {
             favCheckBox.setSelected(true);
         } else {
             favCheckBox.setSelected(false);
@@ -54,7 +55,9 @@ public class Controller implements Initializable {
     public void chooseEV() {
         dictChoice.setText(Type.EV);
         search.clear();
+        speakButton.setDisable(false);
         searchResult.getItems().setAll(Operate.Dictionary.getData(Type.EV).keySet());
+        favList.getItems().setAll(Operate.Favorite.getData(Type.EVFav).keySet());
     }
     @FXML
     public void chooseVE() {
@@ -62,6 +65,7 @@ public class Controller implements Initializable {
         search.clear();
         speakButton.setDisable(true);
         searchResult.getItems().setAll(Operate.Dictionary.getData(Type.VE).keySet());
+        favList.getItems().setAll(Operate.Favorite.getData(Type.VEFav).keySet());
     }
 
     // search field
@@ -94,7 +98,7 @@ public class Controller implements Initializable {
 
     @FXML
     public void showFavoriteList() {
-        favList.getItems().setAll(Operate.Favorite.getData(dictChoice.getText()).keySet());
+        favList.getItems().setAll(Operate.Favorite.getData(Type.convert(dictChoice.getText())).keySet());
     }
 
     @FXML

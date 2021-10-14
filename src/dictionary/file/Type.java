@@ -7,10 +7,10 @@ public class Type {
     public static final String VEFav = "VEFav";
 
     public static String convert(String type) {
-        if (type == EVFav) {
-            return EV;
+        if (type.equals(EV)) {
+            return EVFav;
         } else {
-            return VE;
+            return VEFav;
         }
     }
 }

@@ -65,23 +65,14 @@ public class FileHandler {
      * @return a Treemap of E-V data.
      */
     public Map<String, Word> getData(String type) {
-        switch (type) {
-            case Type.EV: {
-                readFile(EV_PATH);
-                break;
-            }
-            case Type.VE: {
-                readFile(VE_PATH);
-                break;
-            }
-            case Type.EVFav: {
-                readFile(EVFAV_PATH);
-                break;
-            }
-            case Type.VEFav: {
-                readFile(VEFAV_PATH);
-                break;
-            }
+        if (type.equals(Type.EV)) {
+            readFile(EV_PATH);
+        } else if (type.equals(Type.VE)) {
+            readFile(VE_PATH);
+        } else if (type.equals(Type.EVFav)) {
+            readFile(EVFAV_PATH);
+        } else {
+            readFile(VEFAV_PATH);
         }
         return data;
     }
@@ -91,23 +82,14 @@ public class FileHandler {
      * @throws IOException
      */
     public void updateData(String type) throws IOException {
-        switch (type) {
-            case Type.EV: {
-                writeFile(EV_PATH);
-                break;
-            }
-            case Type.VE: {
-                writeFile(VE_PATH);
-                break;
-            }
-            case Type.EVFav: {
-                writeFile(EVFAV_PATH);
-                break;
-            }
-            case Type.VEFav: {
-                writeFile(VEFAV_PATH);
-                break;
-            }
+        if (type.equals(Type.EV)) {
+            writeFile(EV_PATH);
+        } else if (type.equals(Type.VE)) {
+            writeFile(VE_PATH);
+        } else if (type.equals(Type.EVFav)) {
+            writeFile(EVFAV_PATH);
+        } else {
+            writeFile(VEFAV_PATH);
         }
     }
 }
