@@ -10,7 +10,8 @@ public class FileHandler {
     // file paths
     private static final String EV_PATH = "res/E_V.txt";
     private static final String VE_PATH = "res/V_E.txt";
-    private static final String FAV_PATH = "res/fav.txt";
+    private static final String EVFAV_PATH = "res/fav_ev.txt";
+    private static final String VEFAV_PATH = "res/fav_ve.txt";
 
     // character used for splitting word target and meaning.
     private static final String SPLITTING_CHARACTERS = "<html>";
@@ -23,7 +24,7 @@ public class FileHandler {
      *
      * @param filePath file path.
      */
-    public void readData(String filePath) {
+    private void readFile(String filePath) {
         // put these line in try-catch block as BufferredReader dont throw error if the file is not exist.
         try {
             FileReader fis = new FileReader(filePath);
@@ -49,7 +50,7 @@ public class FileHandler {
      * @param path file path
      * @throws IOException
      */
-    public void writeData(String path) throws IOException {
+    private void writeFile(String path) throws IOException {
         FileWriter writer = new FileWriter(path);
         BufferedWriter buffer = new BufferedWriter(writer);
         for (var i : data.entrySet()) {
@@ -59,55 +60,54 @@ public class FileHandler {
     }
 
     /**
-     * read data from E-V dictionary file.
+     * get data from {@code Type} file.
      *
      * @return a Treemap of E-V data.
      */
-    public Map<String, Word> getDataEV() {
-        readData(EV_PATH);
+    public Map<String, Word> getData(String type) {
+        switch (type) {
+            case Type.EV: {
+                readFile(EV_PATH);
+                break;
+            }
+            case Type.VE: {
+                readFile(VE_PATH);
+                break;
+            }
+            case Type.EVFav: {
+                readFile(EVFAV_PATH);
+                break;
+            }
+            case Type.VEFav: {
+                readFile(VEFAV_PATH);
+                break;
+            }
+        }
         return data;
     }
 
     /**
-     * write current data to E-V dictionary file
+     * update current data to {@Code Type} file
      * @throws IOException
      */
-    public void writeDataEV() throws IOException {
-        writeData(EV_PATH);
-    }
-
-    /**
-     * read data from V-E dictionary file.
-     *
-     * @return a Treemap of V-E data.
-     */
-    public Map<String, Word> getDataVE() {
-        readData(VE_PATH);
-        return data;
-    }
-
-    /**
-     * write current data to V-E dictionary file
-     * @throws IOException
-     */
-    public void writeDataVE() throws IOException {
-        writeData(VE_PATH);
-    }
-
-    /**
-     * read data from favorite file
-     * @return a Treemap of favorite
-     */
-    public Map<String, Word> getDataFav() {
-        readData(FAV_PATH);
-        return data;
-    }
-
-    /**
-     * write data to favorite file
-     * @throws IOException
-     */
-    public void writeDataFav() throws IOException {
-        writeData(FAV_PATH);
+    public void updateData(String type) throws IOException {
+        switch (type) {
+            case Type.EV: {
+                writeFile(EV_PATH);
+                break;
+            }
+            case Type.VE: {
+                writeFile(VE_PATH);
+                break;
+            }
+            case Type.EVFav: {
+                writeFile(EVFAV_PATH);
+                break;
+            }
+            case Type.VEFav: {
+                writeFile(VEFAV_PATH);
+                break;
+            }
+        }
     }
 }

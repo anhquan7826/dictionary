@@ -1,7 +1,7 @@
 package gui.search_scene;
 
 import dictionary.Operate;
-import dictionary.Operate.Favorite;
+import dictionary.file.Type;
 import dictionary.manager.word.Word;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,22 +25,18 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        searchResult.getItems().setAll(Operate.EVDictionary.getData().keySet());
+        searchResult.getItems().setAll(Operate.Dictionary.getData(Type.EV).keySet());
     }
 
     private Word wordBeingDisplayed;
 
     private void showSelectedWord(String selectedItem) {
         if (selectedItem == null) {return;}
-        if (dictChoice.getText().equals("Eng - Vi")) {
-            wordBeingDisplayed = Operate.EVDictionary.getWord(selectedItem);
-            if (Favorite.getData().containsKey(selectedItem)) {
-                favCheckBox.setSelected(true);
-            } else {
-                favCheckBox.setSelected(false);
-            }
+        wordBeingDisplayed = Operate.Dictionary.getWord(dictChoice.getText(), selectedItem);
+        if (Operate.Favorite.getData(dictChoice.getText()).containsKey(selectedItem)) {
+            favCheckBox.setSelected(true);
         } else {
-            wordBeingDisplayed = Operate.VEDictionary.getWord(selectedItem);
+            favCheckBox.setSelected(false);
         }
         viewWord.getEngine().loadContent(wordBeingDisplayed.getWord_explain(), "text/html");
         historyStack.push(wordBeingDisplayed);
@@ -56,17 +52,17 @@ public class Controller implements Initializable {
 
     @FXML
     public void chooseEV() {
-        dictChoice.setText("Eng - Vi");
+        dictChoice.setText(Type.EV);
         favCheckBox.setDisable(false);
         search.clear();
-        searchResult.getItems().setAll(Operate.EVDictionary.getData().keySet());
+        searchResult.getItems().setAll(Operate.Dictionary.getData(Type.EV).keySet());
     }
     @FXML
     public void chooseVE() {
-        dictChoice.setText("Vi - Eng");
+        dictChoice.setText(Type.VE);
         favCheckBox.setDisable(true);
         search.clear();
-        searchResult.getItems().setAll(Operate.VEDictionary.getData().keySet());
+        searchResult.getItems().setAll(Operate.Dictionary.getData(Type.VE).keySet());
     }
 
     // search field
@@ -78,18 +74,10 @@ public class Controller implements Initializable {
 
     @FXML
     public void showResultList() {
-        if (dictChoice.getText().equals("Eng - Vi")) {
-            if (search.getText().isBlank()) {
-                searchResult.getItems().setAll(Operate.EVDictionary.getData().keySet());
-            } else {
-                searchResult.getItems().setAll(Operate.EVDictionary.searchWord(search.getText()));
-            }
+        if (search.getText().isBlank()) {
+            searchResult.getItems().setAll(Operate.Dictionary.getData(dictChoice.getText()).keySet());
         } else {
-            if (search.getText().isBlank()) {
-                searchResult.getItems().setAll(Operate.VEDictionary.getData().keySet());
-            } else {
-                searchResult.getItems().setAll(Operate.VEDictionary.searchWord(search.getText()));
-            }
+            searchResult.getItems().setAll(Operate.Dictionary.searchWord(dictChoice.getText(), search.getText()));
         }
     }
 
@@ -107,19 +95,19 @@ public class Controller implements Initializable {
 
     @FXML
     public void showFavoriteList() {
-        favList.getItems().setAll(Operate.Favorite.getData().keySet());
+        favList.getItems().setAll(Operate.Favorite.getData(dictChoice.getText()).keySet());
     }
 
     @FXML
     public void favCheckBoxOnAction() {
-        if (!favCheckBox.isDisabled()) {
-            if (favCheckBox.isSelected()) {
-                Favorite.addWord(wordBeingDisplayed);
-                showFavoriteList();
-            } else {
-                Favorite.removeWord(wordBeingDisplayed.getWord_target());
-                showFavoriteList();
-            }
+        if (favCheckBox.isSelected()) {
+            Operate.Favorite.addWord(Type.convert(dictChoice.getText()),
+                                     wordBeingDisplayed.getWord_target(), 
+                                     wordBeingDisplayed.getWord_explain());
+            showFavoriteList();
+        } else {
+            Operate.Favorite.deleteWord(Type.convert(dictChoice.getText()), wordBeingDisplayed.getWord_target());
+            showFavoriteList();
         }
     }
 
@@ -173,6 +161,12 @@ public class Controller implements Initializable {
         historyList.getItems().clear();
     }
 
+    @FXML
+    public void showHistoryItemOnSelect() {
+        wordBeingDisplayed = historyStack.stack.get(historyList.getSelectionModel().getSelectedIndex());
+        viewWord.getEngine().loadContent(wordBeingDisplayed.getWord_explain(), "text/html");
+    }
+
     // speak field
     @FXML
     private Button speakButton = new Button();
@@ -180,7 +174,9 @@ public class Controller implements Initializable {
     @FXML
     public void speakOnPress() {
         if (wordBeingDisplayed != null) {
-            Operate.TextToSpeech.Speak(wordBeingDisplayed.getWord_target());
+            if (dictChoice.getText().equals(Type.EV)) {
+                Operate.TextToSpeech.Speak(wordBeingDisplayed.getWord_target());
+            }
         }
     }
 }

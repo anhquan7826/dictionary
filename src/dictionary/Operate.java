@@ -1,8 +1,7 @@
 package dictionary;
 
-import dictionary.manager.EVDictMgr;
-import dictionary.manager.FavoriteMgr;
-import dictionary.manager.VEDictMgr;
+import dictionary.file.Type;
+import dictionary.manager.DictionaryMgr;
 import dictionary.manager.word.Word;
 import dictionary.manager.TranslateMgr;
 import dictionary.manager.TextToSpeechMgr;
@@ -11,12 +10,26 @@ import java.util.List;
 import java.util.Map;
 
 public class Operate {
-    private static EVDictMgr EVdict = new EVDictMgr();
-    private static VEDictMgr VEdict = new VEDictMgr();
-    private static FavoriteMgr fav = new FavoriteMgr();
-    private static TranslateMgr trans = new TranslateMgr();
+    private static DictionaryMgr EVdict;
+    private static DictionaryMgr VEdict;
+    private static DictionaryMgr EVfav;
+    private static DictionaryMgr VEfav;
+    private static TranslateMgr trans;
 
-    public static void initOperation() {}
+    public static void initOperation() {
+        EVdict = new DictionaryMgr(Type.EV);
+        VEdict = new DictionaryMgr(Type.VE);
+        EVfav = new DictionaryMgr(Type.EVFav);
+        VEfav = new DictionaryMgr(Type.VEFav);
+        trans = new TranslateMgr();
+    }
+
+    public static void updateData() throws IOException {
+        EVdict.updateData();
+        VEdict.updateData();
+        EVfav.updateData();
+        VEfav.updateData();
+    }
 
     public static class TextToSpeech {
         public static void Speak(String text) {
@@ -30,91 +43,99 @@ public class Operate {
         }
     }
 
-    public static class EVDictionary {
-        public static Word getWord(String key) {
-            return EVdict.getWord(key);
-        }
-
-        public static List<String> searchWord(String query) {
-            return EVdict.searchWord(query);
-        }
-
-        public static void addWord(String word, String meaning) {
-            EVdict.addWord(word, meaning);
-        }
-
-        public static void editWord(String target, String explain) {
-            EVdict.editWord(target, explain);
-            if (fav.getDataFavorite().containsKey(target)) {
-                fav.getDataFavorite().replace(target, EVdict.getWord(target));
+    public static class Dictionary {
+        public static Word getWord(String type, String key) {
+            if (type == Type.EV) {
+                return EVdict.getWord(key);
+            } else {
+                return VEdict.getWord(key);
             }
         }
 
-        public static void deleteWord(String word) {
-            EVdict.deleteWord(word);
-        }
-
-        public static void updateData() throws IOException {
-            EVdict.updateData();
-        }
-
-        public static Map<String, Word> getData() {
-            return EVdict.getDataDictionary();
-        }
-    }
-
-    public static class VEDictionary {
-        public static Word getWord(String key) {
-            return VEdict.getWord(key);
-        }
-
-        public static List<String> searchWord(String query) {
-            return VEdict.searchWord(query);
-        }
-
-        public static void addWord(String word, String meaning) {
-            VEdict.addWord(word, meaning);
-        }
-
-        public static void editWord(String target, String explain) {
-            VEdict.editWord(target, explain);
-            if (fav.getDataFavorite().containsKey(target)) {
-                fav.getDataFavorite().replace(target, VEdict.getWord(target));
+        public static List<String> searchWord(String type, String query) {
+            if (type == Type.EV) {
+                return EVdict.searchWord(query);
+            } else {
+                return VEdict.searchWord(query);
             }
         }
 
-        public static void deleteWord(String word) {
-            VEdict.deleteWord(word);
+        public static void addWord(String type, String target, String explain) {
+            if (type == Type.EV) {
+                EVdict.addWord(target, explain);
+            } else {
+                VEdict.addWord(target, explain);
+            }
         }
 
-        public static void updateData() throws IOException {
-            VEdict.updateData();
+        public static void editWord(String type, String target, String explain) {
+            if (type == Type.EV) {
+                EVdict.editWord(target, explain);
+                if (EVfav.getData().containsKey(target)) {
+                    EVfav.editWord(target, explain);
+                }
+            } else {
+                VEdict.editWord(target, explain);
+                if (VEfav.getData().containsKey(target)) {
+                    VEfav.editWord(target, explain);
+                }
+            }
         }
 
-        public static Map<String, Word> getData() {
-            return VEdict.getDataDictionary();
+        public static void deleteWord(String type, String word) {
+            if (type == Type.EV) {
+                EVdict.deleteWord(word);
+                if (EVfav.getData().containsKey(word)) {
+                    EVfav.deleteWord(word);
+                }
+            } else {
+                VEdict.deleteWord(word);
+                if (EVfav.getData().containsKey(word)) {
+                    EVfav.deleteWord(word);
+                }
+            }
+        }
+
+        public static Map<String, Word> getData(String type) {
+            if (type == Type.EV) {
+                return EVdict.getData();
+            } else {
+                return VEdict.getData();
+            }
         }
     }
 
     public static class Favorite {
-        public static Word getWord(String key) {
-            return fav.getWord(key);
+        public static Word getWord(String type, String key) {
+            if (type == Type.EVFav) {
+                return EVfav.getWord(key);
+            } else {
+                return VEfav.getWord(key);
+            }
         }
 
-        public static void addWord(Word word) {
-            fav.addWord(word);
+        public static void addWord(String type, String target, String explain) {
+            if (type == Type.EVFav) {
+                EVfav.addWord(target, explain);
+            } else {
+                VEfav.addWord(target, explain);
+            }
         }
 
-        public static void removeWord(String word) {
-            fav.removeWord(word);
+        public static void deleteWord(String type, String word) {
+            if (type == Type.EVFav) {
+                EVfav.deleteWord(word);
+            } else {
+                VEfav.deleteWord(word);
+            }
         }
 
-        public static Map<String, Word> getData() {
-            return fav.getDataFavorite();
-        }
-
-        public static void updateData() throws IOException {
-            fav.updateData();
+        public static Map<String, Word> getData(String type) {
+            if (type == Type.EVFav) {
+                return EVfav.getData();
+            } else {
+                return VEfav.getData();
+            }
         }
     }
 }
