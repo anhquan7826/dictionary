@@ -17,8 +17,9 @@ public class Operate {
     private static TranslateMgr trans = new TranslateMgr();
 
     public static void initOperation() {}
-    public static class  TextToSpeech{
-        public static void Speak(String text){
+
+    public static class TextToSpeech {
+        public static void Speak(String text) {
             TextToSpeechMgr.Speak(text);
         }
     }
