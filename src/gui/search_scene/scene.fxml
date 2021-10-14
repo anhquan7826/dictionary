@@ -20,25 +20,35 @@
 
 <BorderPane prefHeight="505.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.search_scene.Controller">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuButton fx:id="dictChoice" mnemonicParsing="false" prefHeight="27.0" prefWidth="113.0" text="Eng - Vi">
+              <items>
+                <MenuItem fx:id="evChoice" mnemonicParsing="false" onAction="#chooseEV" text="English - Vietnamese" />
+                <MenuItem fx:id="veChoice" mnemonicParsing="false" onAction="#chooseVE" text="Vietnamese - English" />
+              </items>
+            </MenuButton>
+            <MenuBar prefHeight="27.0" prefWidth="666.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </HBox>
    </top>
    <left>
       <TabPane prefHeight="480.0" prefWidth="239.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
@@ -51,36 +61,31 @@
                            <children>
                               <HBox>
                                  <children>
-                                    <TextField fx:id="search" onKeyTyped="#resultOnType" prefHeight="25.0" prefWidth="173.0" promptText="Tìm kiếm" />
-                                    <MenuButton fx:id="dictChoice" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" text="Eng - Vi">
-                                      <items>
-                                        <MenuItem fx:id="evChoice" mnemonicParsing="false" onAction="#chooseEV" text="English - Vietnamese" />
-                                        <MenuItem fx:id="veChoice" mnemonicParsing="false" onAction="#chooseVE" text="Vietnamese - English" />
-                                      </items>
-                                    </MenuButton>
+                                    <TextField fx:id="search" onKeyTyped="#showResultList" prefHeight="24.0" prefWidth="274.0" promptText="Tìm kiếm" />
                                  </children>
                               </HBox>
-                              <ListView fx:id="searchResult" onMouseClicked="#showSelectedWord" prefHeight="568.0" prefWidth="239.0" />
+                              <ListView fx:id="searchResult" onMouseClicked="#showResultItemOnSelect" prefHeight="568.0" prefWidth="239.0" />
                            </children>
                         </VBox>
                      </children>
                   </VBox>
                </content>
             </Tab>
-          <Tab text="Lịch sử">
+          <Tab onSelectionChanged="#showHistoryList" text="Lịch sử">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ListView prefHeight="489.0" prefWidth="190.0" />
+                        <ListView fx:id="historyList" prefHeight="489.0" prefWidth="190.0" />
+                        <Button fx:id="historyClearButton" mnemonicParsing="false" onAction="#clearHistory" prefHeight="25.0" prefWidth="257.0" text="Xoá lịch sử" />
                      </children>
                   </VBox>
                </content>
           </Tab>
-          <Tab text="Yêu thích">
+          <Tab onSelectionChanged="#showFavoriteList" text="Yêu thích">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ListView prefHeight="549.0" prefWidth="190.0" />
+                        <ListView fx:id="favList" onMouseClicked="#showFavoriteItemOnSelect" prefHeight="549.0" prefWidth="190.0" />
                      </children>
                   </VBox>
                </content>
@@ -91,13 +96,19 @@
    <center>
       <BorderPane BorderPane.alignment="CENTER">
          <center>
-            <AnchorPane>
-               <children>
-                  <WebView fx:id="viewWord" prefHeight="451.0" prefWidth="491.0" />
-                  <Button layoutX="391.0" layoutY="31.0" mnemonicParsing="false" text="Pronounce" />
-                  <CheckBox layoutX="392.0" layoutY="6.0" mnemonicParsing="false" text="Favorite" />
-               </children>
-            </AnchorPane>
+            <BorderPane>
+               <center>
+                  <WebView fx:id="viewWord" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
+               <top>
+                  <AnchorPane prefHeight="14.0" prefWidth="491.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button layoutX="18.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" text="Phát âm" />
+                        <CheckBox fx:id="favCheckBox" layoutX="388.0" layoutY="4.0" mnemonicParsing="false" onAction="#favCheckBoxOnAction" text="Yêu thích" />
+                     </children>
+                  </AnchorPane>
+               </top>
+            </BorderPane>
          </center>
          <top>
             <Label alignment="CENTER" prefHeight="29.0" prefWidth="543.0" text="Định nghĩa " BorderPane.alignment="CENTER">
