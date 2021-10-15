@@ -14,14 +14,13 @@ public class Operate {
     private static DictionaryMgr VEdict;
     private static DictionaryMgr EVfav;
     private static DictionaryMgr VEfav;
-    private static TranslateMgr trans;
+//  private static TranslateMgr trans = new TranslateMgr();
 
     public static void initOperation() {
         EVdict = new DictionaryMgr(Type.EV);
         VEdict = new DictionaryMgr(Type.VE);
         EVfav = new DictionaryMgr(Type.EVFav);
         VEfav = new DictionaryMgr(Type.VEFav);
-        trans = new TranslateMgr();
     }
 
     public static void updateData() throws IOException {
@@ -39,7 +38,8 @@ public class Operate {
 
     public static class Translate {
         public static String translate(String langFrom, String langTo, String text) throws IOException {
-            return trans.translate(langFrom, langTo, text);
+//            return trans.translate(langFrom, langTo, text);
+            return TranslateMgr.translate(langFrom, langTo , text);
         }
     }
 

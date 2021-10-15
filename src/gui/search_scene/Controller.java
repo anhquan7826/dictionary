@@ -31,7 +31,7 @@ public class Controller implements Initializable {
 
     private Word wordBeingDisplayed;
 
-    private void showSelectedWord(String selectedItem) {
+    public void showSelectedWord(String selectedItem) {
         if (selectedItem == null) {return;}
         wordBeingDisplayed = Operate.Dictionary.getWord(dictChoice.getText(), selectedItem);
         if (Operate.Favorite.getData(Type.convert(dictChoice.getText())).containsKey(selectedItem)) {
