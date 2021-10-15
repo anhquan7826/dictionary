@@ -4,10 +4,7 @@ import dictionary.Operate;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.web.WebView;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
