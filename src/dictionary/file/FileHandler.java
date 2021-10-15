@@ -14,7 +14,7 @@ public class FileHandler {
     private static final String VEFAV_PATH = "res/fav_ve.txt";
 
     // character used for splitting word target and meaning.
-    private static final String SPLITTING_CHARACTERS = "<html>";
+    private static final String SPLITTING_CHARACTERS = "<html";
 
     // store data using Treemap
     private Map<String, Word> data = new TreeMap<String, Word>();
