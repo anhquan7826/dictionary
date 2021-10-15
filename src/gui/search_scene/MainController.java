@@ -1,10 +1,22 @@
 package gui.search_scene;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import dictionary.Operate;
 import dictionary.file.Type;
 import dictionary.manager.word.Word;
+import gui.search_scene.children.edit.EditController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
@@ -12,13 +24,10 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
-public class Controller implements Initializable {
+public class MainController implements Initializable {
     // main stuff
     @FXML
     private WebView viewWord = new WebView();
@@ -184,5 +193,47 @@ public class Controller implements Initializable {
                 Operate.TextToSpeech.Speak(wordBeingDisplayed.getWord_target());
             }
         }
+    }
+
+    // menubar
+        // file
+    @FXML
+    private MenuItem toTranslate = new MenuItem();
+    @FXML
+    private MenuItem openEditBox = new MenuItem();
+    @FXML
+    private MenuItem deleteWord = new MenuItem();
+
+            // open translate
+    @FXML
+    public void openTranslateScene(ActionEvent e) throws IOException {
+        Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        Parent next = FXMLLoader.load(getClass().getResource("../googletranslate_scene/scene.fxml"));
+        Scene scene = new Scene(next);
+        primaryStage.setScene(scene);
+    }
+
+            // open editor
+    @FXML
+    public void openEditBoxWindow(ActionEvent e) throws IOException {
+        Stage editStage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("children/edit/edit_scene.fxml"));
+        Scene scene = new Scene(loader.load());
+        EditController editController = loader.getController();
+        editController.setWord(wordBeingDisplayed);
+        editStage.setTitle("Chỉnh sửa");
+        editStage.setScene(scene);
+        editStage.initModality(Modality.APPLICATION_MODAL);
+        editStage.show();
+        editStage.setOnCloseRequest(event -> {
+            if (editController.saveConfirmationBox()) {
+                Operate.Dictionary.editWord(dictChoice.getText(), 
+                                            wordBeingDisplayed.getWord_target(), 
+                                            wordBeingDisplayed.getWord_explain());
+                editStage.close();
+            }
+            viewWord.getEngine().loadContent(wordBeingDisplayed.getWord_explain(), "text/html");
+        });
     }
 }
