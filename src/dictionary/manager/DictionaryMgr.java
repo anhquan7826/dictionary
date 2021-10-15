@@ -67,9 +67,7 @@ public class DictionaryMgr {
         if (word == null) {
             return;
         }
-        word.setWord_explain("<html><i>" + target
-        + "</i><br/><ul><li><font color='#cc0000'><b>"
-        + explain + "</b></font></li></ul></html>");
+        word.setWord_explain(explain);
     }
 
     /**
