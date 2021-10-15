@@ -162,11 +162,14 @@ public class Controller implements Initializable {
     public void clearHistory() {
         historyStack.clear();
         historyList.getItems().clear();
+        wordBeingDisplayed = null;
+        viewWord.getEngine().loadContent(null);
     }
 
     @FXML
     public void showHistoryItemOnSelect() {
         wordBeingDisplayed = historyStack.stack.get(historyList.getSelectionModel().getSelectedIndex());
+        if (wordBeingDisplayed == null) {return;}
         viewWord.getEngine().loadContent(wordBeingDisplayed.getWord_explain(), "text/html");
     }
 

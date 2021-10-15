@@ -78,7 +78,7 @@
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ListView fx:id="historyList" prefHeight="489.0" prefWidth="190.0" />
+                        <ListView fx:id="historyList" onMouseClicked="#showHistoryItemOnSelect" prefHeight="489.0" prefWidth="190.0" />
                         <Button fx:id="historyClearButton" mnemonicParsing="false" onAction="#clearHistory" prefHeight="25.0" prefWidth="257.0" text="Xoá lịch sử" />
                      </children>
                   </VBox>
