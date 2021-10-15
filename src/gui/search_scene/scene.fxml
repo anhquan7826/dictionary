@@ -32,17 +32,20 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" text="Chuyển sang chế độ dịch" />
+                        <MenuItem mnemonicParsing="false" text="Thoát" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" text="Thêm từ mới" />
+                        <MenuItem mnemonicParsing="false" text="Sửa từ đang chọn" />
+                        <MenuItem mnemonicParsing="false" text="Xoá từ đang chọn" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem mnemonicParsing="false" text="Về Từ điển này" />
                   </items>
                 </Menu>
               </menus>
