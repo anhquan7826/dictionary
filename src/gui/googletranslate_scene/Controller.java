@@ -67,5 +67,4 @@ public class Controller implements Initializable {
         Operate.TextToSpeech.Speak(output.getText());
     }
 
-
 }
