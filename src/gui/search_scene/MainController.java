@@ -2,6 +2,7 @@ package gui.search_scene;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dictionary.Operate;
@@ -17,7 +18,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -136,7 +140,6 @@ public class MainController implements Initializable {
 
     @FXML
     public void showHistoryList() {
-        if (History.getAllHistory(dictChoice.getText()) == null) {return;}
         historyList.getItems().setAll(History.getAllHistory(dictChoice.getText()));
     }
 
@@ -168,13 +171,6 @@ public class MainController implements Initializable {
 
     // menubar
         // file
-    @FXML
-    private MenuItem toTranslate = new MenuItem();
-    @FXML
-    private MenuItem openEditBox = new MenuItem();
-    @FXML
-    private MenuItem deleteWord = new MenuItem();
-
             // open translate
     @FXML
     public void openTranslateScene(ActionEvent e) throws IOException {
@@ -184,6 +180,7 @@ public class MainController implements Initializable {
         primaryStage.setScene(scene);
     }
 
+        //edit
             // open editor
     @FXML
     public void openEditBoxWindow(ActionEvent e) throws IOException {
@@ -205,7 +202,7 @@ public class MainController implements Initializable {
         });
     }
 
-        // open add
+            // open add
     @FXML
     public void openAddWindow(ActionEvent e) throws IOException {
         Stage editStage = new Stage();
@@ -223,5 +220,27 @@ public class MainController implements Initializable {
                 editStage.close();
             }
         });
+    }
+
+            // delete word confirm
+    @FXML
+    public void deleteWordConfirmationBox() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Bạn có muốn xóa từ \"" + wordBeingDisplayed.getWord_target() + "\" không?");
+        ButtonType buttonTypeYes = new ButtonType("Đồng ý", ButtonData.YES);
+        ButtonType buttonTypeCancel = new ButtonType("Không", ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeYes) {
+            History.removeHistory(dictChoice.getText(), wordBeingDisplayed);
+            Operate.Dictionary.deleteWord(dictChoice.getText(), wordBeingDisplayed.getWord_target());
+            wordBeingDisplayed = null;
+            viewWord.getEngine().load("");
+            search.clear();
+            searchResult.getItems().setAll(Operate.Dictionary.getData(dictChoice.getText()).keySet());
+            favList.getItems().setAll(Operate.Favorite.getData(Type.convert(dictChoice.getText())).keySet());
+            historyList.getItems().setAll(History.getAllHistory(dictChoice.getText()));
+        }
     }
 }

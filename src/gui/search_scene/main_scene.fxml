@@ -40,7 +40,7 @@
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#openAddWindow" text="Thêm từ mới" />
                         <MenuItem fx:id="openEditBox" mnemonicParsing="false" onAction="#openEditBoxWindow" text="Sửa từ đang chọn" />
-                        <MenuItem mnemonicParsing="false" text="Xoá từ đang chọn" />
+                        <MenuItem mnemonicParsing="false" onAction="#deleteWordConfirmationBox" text="Xoá từ đang chọn" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">

@@ -17,6 +17,16 @@ public class History {
         }
     }
 
+    public static void removeHistory(String type, Word word) {
+        if (type.equals(Type.EV)) {
+            ev_history.stack.removeIf(filter -> (filter == word));
+            System.out.println(ev_history.toStringList());
+        } else {
+            ve_history.stack.removeIf(filter -> (filter == word));
+            System.out.println(ve_history.toStringList());
+        }
+    }
+
     public static void clearHistory(String type) {
         if (type.equals(Type.EV)) {
             ev_history.clear();
