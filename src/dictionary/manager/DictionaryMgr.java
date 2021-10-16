@@ -37,9 +37,6 @@ public class DictionaryMgr {
      * @param meaning meaning.
      */
     public void addWord(String target, String explain) {
-        explain = "<html><i>" + target
-                + "</i><br/><ul><li><font color='#cc0000'><b>"
-                + explain + "</b></font></li></ul></html>";
         // replace entry if already exist.
         if (data.containsKey(target)) {
             data.replace(target, new Word(target, explain));

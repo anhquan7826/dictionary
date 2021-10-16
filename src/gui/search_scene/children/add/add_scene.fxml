@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.web.HTMLEditor?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.search_scene.children.add.AddController">
+   <top>
+      <HBox prefHeight="15.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="24.0" prefWidth="107.0" text="Từ cần thêm:" />
+            <TextField fx:id="word_target" prefHeight="24.0" prefWidth="285.0" />
+            <ButtonBar prefHeight="24.0" prefWidth="237.0">
+              <buttons>
+                <Button minWidth="41.0" mnemonicParsing="false" onAction="#saveButtonPressed" prefHeight="24.0" text="Lưu" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <HTMLEditor fx:id="word_explain" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="200.0" prefWidth="506.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

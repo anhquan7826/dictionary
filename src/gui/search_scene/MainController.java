@@ -8,6 +8,7 @@ import dictionary.Operate;
 import dictionary.file.Type;
 import dictionary.history.History;
 import dictionary.manager.word.Word;
+import gui.search_scene.children.add.AddController;
 import gui.search_scene.children.edit.EditController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -191,6 +192,7 @@ public class MainController implements Initializable {
         loader.setLocation(getClass().getResource("children/edit/edit_scene.fxml"));
         Scene scene = new Scene(loader.load());
         EditController editController = loader.getController();
+        editController.setMode(dictChoice.getText());
         editController.setWord(wordBeingDisplayed);
         editStage.setTitle("Chỉnh sửa");
         editStage.setScene(scene);
@@ -198,12 +200,28 @@ public class MainController implements Initializable {
         editStage.show();
         editStage.setOnCloseRequest(event -> {
             if (editController.saveConfirmationBox()) {
-                Operate.Dictionary.editWord(dictChoice.getText(), 
-                                            wordBeingDisplayed.getWord_target(), 
-                                            wordBeingDisplayed.getWord_explain());
                 editStage.close();
             }
-            viewWord.getEngine().loadContent(wordBeingDisplayed.getWord_explain(), "text/html");
+        });
+    }
+
+        // open add
+    @FXML
+    public void openAddWindow(ActionEvent e) throws IOException {
+        Stage editStage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("children/add/add_scene.fxml"));
+        Scene scene = new Scene(loader.load());
+        AddController addController = loader.getController();
+        addController.setMode(dictChoice.getText());
+        editStage.setTitle("Thêm từ mới");
+        editStage.setScene(scene);
+        editStage.initModality(Modality.APPLICATION_MODAL);
+        editStage.show();
+        editStage.setOnCloseRequest(event -> {
+            if (addController.saveConfirmationBox()) {
+                editStage.close();
+            }
         });
     }
 }
