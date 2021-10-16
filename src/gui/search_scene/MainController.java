@@ -2,12 +2,11 @@ package gui.search_scene;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import dictionary.Operate;
 import dictionary.file.Type;
+import dictionary.history.History;
 import dictionary.manager.word.Word;
 import gui.search_scene.children.edit.EditController;
 import javafx.event.ActionEvent;
@@ -49,7 +48,7 @@ public class MainController implements Initializable {
             favCheckBox.setSelected(false);
         }
         viewWord.getEngine().loadContent(wordBeingDisplayed.getWord_explain(), "text/html");
-        historyStack.push(wordBeingDisplayed);
+        History.addHistory(dictChoice.getText(), wordBeingDisplayed);
     }
 
     // mode choosing
@@ -67,6 +66,7 @@ public class MainController implements Initializable {
         speakButton.setDisable(false);
         searchResult.getItems().setAll(Operate.Dictionary.getData(Type.EV).keySet());
         favList.getItems().setAll(Operate.Favorite.getData(Type.EVFav).keySet());
+        historyList.getItems().setAll(History.getAllHistory(Type.EV));
     }
     @FXML
     public void chooseVE() {
@@ -75,6 +75,7 @@ public class MainController implements Initializable {
         speakButton.setDisable(true);
         searchResult.getItems().setAll(Operate.Dictionary.getData(Type.VE).keySet());
         favList.getItems().setAll(Operate.Favorite.getData(Type.VEFav).keySet());
+        historyList.getItems().setAll(History.getAllHistory(Type.VE));
     }
 
     // search field
@@ -133,53 +134,22 @@ public class MainController implements Initializable {
     private ListView<String> historyList = new ListView<>();
 
     @FXML
-    private Button historyClearButton = new Button();
-
-    private class Stack {
-        private List<Word> stack;
-
-        private Stack() {
-            stack = new ArrayList<Word>();
-        }
-    
-        private void push(Word value) {
-            stack.add(0, value);
-        }
-
-        private void clear() {
-            stack.clear();
-        }
-
-        private List<String> toStringList() {
-            List<String> r = new ArrayList<>();
-            for (Word i : stack) {
-                r.add(i.getWord_target());
-            }
-            return r;
-        }
-    }
-
-    private Stack historyStack = new Stack();
-
-    @FXML
     public void showHistoryList() {
-        if (historyStack == null) {return;}
-        historyList.getItems().setAll(historyStack.toStringList());
+        if (History.getAllHistory(dictChoice.getText()) == null) {return;}
+        historyList.getItems().setAll(History.getAllHistory(dictChoice.getText()));
     }
 
     @FXML
     public void clearHistory() {
-        historyStack.clear();
         historyList.getItems().clear();
+        History.clearHistory(dictChoice.getText());
         wordBeingDisplayed = null;
         viewWord.getEngine().loadContent(null);
     }
 
     @FXML
     public void showHistoryItemOnSelect() {
-        wordBeingDisplayed = historyStack.stack.get(historyList.getSelectionModel().getSelectedIndex());
-        if (wordBeingDisplayed == null) {return;}
-        viewWord.getEngine().loadContent(wordBeingDisplayed.getWord_explain(), "text/html");
+        showSelectedWord(historyList.getSelectionModel().getSelectedItem());
     }
 
     // speak field
