@@ -2,6 +2,7 @@ package gui.search_scene.children.edit;
 
 import java.util.Optional;
 
+import dictionary.Operate;
 import dictionary.manager.word.Word;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 
 public class EditController {
     private Word wordBeingEdited;
+    private String mode;
 
     @FXML
     private Label wordIndicator = new Label();
@@ -22,14 +24,14 @@ public class EditController {
     @FXML
     private HTMLEditor editArea = new HTMLEditor();
 
-    public Word getWord() {
-        return wordBeingEdited;
-    }
-
     public void setWord(Word word) {
         this.wordBeingEdited = word;
         wordIndicator.setText(wordIndicator.getText() + wordBeingEdited.getWord_target());
         editArea.setHtmlText(wordBeingEdited.getWord_explain());
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
     public boolean saveConfirmationBox() {
@@ -40,17 +42,19 @@ public class EditController {
         ButtonType buttonTypeCancel = new ButtonType("Không", ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
         Optional<ButtonType> result = alert.showAndWait();
-        return (result.get() == buttonTypeYes);
+        if (result.get() == buttonTypeYes) {
+            Operate.Dictionary.editWord(mode, 
+            wordBeingEdited.getWord_target(), 
+            wordBeingEdited.getWord_explain());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void saveButtonPressed(ActionEvent e) {
         Stage currentStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        // TODO: handle saving method here
         wordBeingEdited.setWord_explain(editArea.getHtmlText());
         currentStage.close();
-    }
-
-    public static void main(String[] args) {
-        
     }
 }
