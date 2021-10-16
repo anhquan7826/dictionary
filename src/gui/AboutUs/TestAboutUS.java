@@ -16,7 +16,7 @@ public class TestAboutUS extends Application {
 
     @Override
     public void start(Stage primaryStage)throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("testimage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AboutUs.fxml"));
         primaryStage.setTitle("Test");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

@@ -9,30 +9,30 @@
 
 <AnchorPane prefHeight="562.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AboutUs.AboutControlller">
    <children>
-      <Label layoutX="194.0" layoutY="399.0" text="Developed by" textFill="#192142">
+      <ImageView fitHeight="562.0" fitWidth="415.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../image/RemNew.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="182.0" layoutY="405.0" text="Developed by">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Hyperlink layoutX="213.0" layoutY="434.0" onAction="#OpenLinkHa" text="Quang Hà">
+      <Hyperlink layoutX="209.0" layoutY="440.0" onAction="#OpenLinkHa" text="Quang Hà">
          <font>
             <Font size="18.0" />
          </font>
       </Hyperlink>
-      <Hyperlink layoutX="213.0" layoutY="469.0" onAction="#OpenLinkQuan" text="Anh Quân">
+      <Hyperlink layoutX="209.0" layoutY="476.0" onAction="#OpenLinkQuan" text="Anh Quân">
          <font>
             <Font size="18.0" />
          </font>
       </Hyperlink>
-      <Hyperlink layoutX="183.0" layoutY="504.0" onAction="#OpenProject" text="Dictionary Ver 1.0">
+      <Hyperlink layoutX="170.0" layoutY="511.0" onAction="#OpenProject" text="Dictionary Ver 1.0">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </Hyperlink>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="94.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../image/RemNew.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
