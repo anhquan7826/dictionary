@@ -120,7 +120,7 @@ public class MainController implements Initializable {
     public void favCheckBoxOnAction() {
         if (favCheckBox.isSelected()) {
             Operate.Favorite.addWord(Type.convert(dictChoice.getText()),
-                                     wordBeingDisplayed.getWord_target(), 
+                                     wordBeingDisplayed.getWord_target(),
                                      wordBeingDisplayed.getWord_explain());
             showFavoriteList();
         } else {
@@ -174,10 +174,16 @@ public class MainController implements Initializable {
             // open translate
     @FXML
     public void openTranslateScene(ActionEvent e) throws IOException {
-        Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        Parent next = FXMLLoader.load(getClass().getResource("../googletranslate_scene/scene.fxml"));
-        Scene scene = new Scene(next);
-        primaryStage.setScene(scene);
+        Stage tranStage = new Stage();
+//      FXMLLoader loader = new FXMLLoader();
+//      loader.setLocation(getClass().getResource("../googletranslate_scene/GGTScene.fxml"));
+//      Scene scene = new Scene(loader.load());
+//        tranStage.setScene(scene);
+        Parent root = FXMLLoader.load(getClass().getResource("../googletranslate_scene/GGTScene.fxml"));
+        tranStage.setTitle("Translate by API");
+        tranStage.setScene(new Scene (root));
+        tranStage.initModality(Modality.APPLICATION_MODAL);
+        tranStage.show();
     }
 
         //edit

@@ -32,7 +32,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Chuyển sang chế độ dịch" />
+                    <MenuItem mnemonicParsing="false" onAction="#openTranslateScene" text="Chuyển sang chế độ dịch" />
                         <MenuItem mnemonicParsing="false" text="Thoát" />
                   </items>
                 </Menu>
