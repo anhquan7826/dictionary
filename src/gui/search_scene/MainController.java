@@ -178,13 +178,14 @@ public class MainController implements Initializable {
 //      FXMLLoader loader = new FXMLLoader();
 //      loader.setLocation(getClass().getResource("../googletranslate_scene/GGTScene.fxml"));
 //      Scene scene = new Scene(loader.load());
-//        tranStage.setScene(scene);
+//      tranStage.setScene(scene);
         Parent root = FXMLLoader.load(getClass().getResource("../googletranslate_scene/GGTScene.fxml"));
         tranStage.setTitle("Translate by API");
         tranStage.setScene(new Scene (root));
         tranStage.initModality(Modality.APPLICATION_MODAL);
         tranStage.show();
     }
+
     // menu bar
         // Help
             // Ve tu dien nay
