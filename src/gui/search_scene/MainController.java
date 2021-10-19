@@ -185,6 +185,20 @@ public class MainController implements Initializable {
         tranStage.initModality(Modality.APPLICATION_MODAL);
         tranStage.show();
     }
+    // menu bar
+        // Help
+            // Ve tu dien nay
+    @FXML
+    public void openAboutUs(ActionEvent e) throws IOException {
+        Stage tranStage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../AboutUs/AboutUs.fxml"));
+        Scene scene = new Scene(loader.load());
+        tranStage.setScene(scene);
+        tranStage.setTitle("About Us");
+        tranStage.initModality(Modality.APPLICATION_MODAL);
+        tranStage.show();
+    }
 
         //edit
             // open editor
