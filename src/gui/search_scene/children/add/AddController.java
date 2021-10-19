@@ -33,7 +33,7 @@ public class AddController {
 
     @FXML
     public void saveButtonPressed(ActionEvent e) {
-        if (word_target.getText().isEmpty()) {
+        if (word_target.getText().isBlank()) {
             Alert emptyStringAlert = new Alert(Alert.AlertType.ERROR);
             emptyStringAlert.setTitle("Lỗi!");
             emptyStringAlert.setHeaderText("Bạn chưa nhập từ để thêm!");
