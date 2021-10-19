@@ -43,9 +43,7 @@ public class EditController {
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
-            Operate.Dictionary.editWord(mode, 
-            wordBeingEdited.getWord_target(), 
-            wordBeingEdited.getWord_explain());
+            Operate.Dictionary.editWord(mode, wordBeingEdited.getWord_target(), wordBeingEdited.getWord_explain());
             return true;
         } else {
             return false;
