@@ -38,6 +38,19 @@ public class AddController {
             emptyStringAlert.setTitle("Lỗi!");
             emptyStringAlert.setHeaderText("Bạn chưa nhập từ để thêm!");
             emptyStringAlert.showAndWait();
+        } else if (Operate.Dictionary.getData(mode).containsKey(word_target.getText())) {
+            Alert existStringAlert = new Alert(Alert.AlertType.ERROR);
+            existStringAlert.setTitle("Lỗi!");
+            existStringAlert.setHeaderText("Từ đã tồn tại. Bạn có muốn ghi đè?");
+            ButtonType buttonTypeYes = new ButtonType("Đồng ý", ButtonData.YES);
+            ButtonType buttonTypeCancel = new ButtonType("Không", ButtonData.CANCEL_CLOSE);
+            existStringAlert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
+            Optional<ButtonType> result = existStringAlert.showAndWait();
+            if (result.get() == buttonTypeYes) {
+                Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText());
+                Stage currentStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                currentStage.close();
+            }
         } else {
             Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText());
             Stage currentStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
