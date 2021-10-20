@@ -17,7 +17,6 @@ public class AboutControlller implements Initializable {
         // Linux
         // Runtime.getRuntime().exec(new String[]{"bash", "-c", "/path/to/chrome https://github.com/anhquan7826"});
         //ALl
-        Desktop desktop = Desktop.getDesktop();
         String url_open ="https://github.com/anhquan7826";
         Desktop.getDesktop().browse(URI.create(url_open));
     }
@@ -28,7 +27,6 @@ public class AboutControlller implements Initializable {
         // Linux
         // Runtime.getRuntime().exec(new String[]{"bash", "-c", "/path/to/chrome https://github.com/Lppt12345"});
         // ALL
-        Desktop desktop = Desktop.getDesktop();
         String url_open ="https://github.com/Lppt12345";
         Desktop.getDesktop().browse(URI.create(url_open));
     }
@@ -39,7 +37,6 @@ public class AboutControlller implements Initializable {
         // Linux
         // Runtime.getRuntime().exec(new String[]{"bash", "-c", "/path/to/chrome https://github.com/anhquan7826/dictionar"});
         // ALL
-        Desktop desktop = Desktop.getDesktop();
         String url_open ="https://github.com/anhquan7826/dictionary";
         Desktop.getDesktop().browse(URI.create(url_open));
     }
