@@ -39,7 +39,7 @@ public class AddController {
             emptyStringAlert.setHeaderText("Bạn chưa nhập từ để thêm!");
             emptyStringAlert.showAndWait();
         } else if (Operate.Dictionary.getData(mode).containsKey(word_target.getText())) {
-            Alert existStringAlert = new Alert(Alert.AlertType.ERROR);
+            Alert existStringAlert = new Alert(Alert.AlertType.CONFIRMATION);
             existStringAlert.setTitle("Lỗi!");
             existStringAlert.setHeaderText("Từ đã tồn tại. Bạn có muốn ghi đè?");
             ButtonType buttonTypeYes = new ButtonType("Đồng ý", ButtonData.YES);

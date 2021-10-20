@@ -1,5 +1,9 @@
 package dictionary.file;
 
+/**
+ * 2 dictionary types: E-V and V-E
+ */
+
 public class Type {
     public static final String EV = "Eng - Vi";
     public static final String VE = "Vi - Eng";
