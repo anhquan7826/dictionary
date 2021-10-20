@@ -23,12 +23,12 @@
                   <Font size="22.0" />
                </font>
             </TextArea>
-            <Button fx:id="trans" layoutX="343.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#translate" styleClass="button_translate" stylesheets="@../Translate.css" text="Translate">
+            <Button fx:id="trans" layoutX="511.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#translate" styleClass="button_translate" stylesheets="@../Translate.css" text="Translate">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
             <RadioButton fx:id="EV" layoutX="26.0" layoutY="22.0" mnemonicParsing="false" selected="true" stylesheets="@../Translate.css" text="English - Vietnamese" />
-            <RadioButton fx:id="VE" layoutX="183.0" layoutY="22.0" mnemonicParsing="false" text="Vietnamese - English" />
+            <RadioButton fx:id="VE" layoutX="251.0" layoutY="22.0" mnemonicParsing="false" text="Vietnamese - English" />
             <Button fx:id="Speakinput" layoutX="36.0" layoutY="212.0" mnemonicParsing="false" onAction="#Speak_input">
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
