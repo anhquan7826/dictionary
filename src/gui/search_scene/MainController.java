@@ -15,7 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -53,7 +52,6 @@ public class MainController implements Initializable {
             favCheckBox.setSelected(false);
         }
         viewWord.getEngine().loadContent(wordBeingDisplayed.getWord_explain(), "text/html");
-        History.addHistory(dictChoice.getText(), wordBeingDisplayed);
     }
 
     // mode choosing
@@ -102,6 +100,7 @@ public class MainController implements Initializable {
     @FXML
     public void showResultItemOnSelect() {
         showSelectedWord(searchResult.getSelectionModel().getSelectedItem());
+        History.addHistory(dictChoice.getText(), wordBeingDisplayed);
     }
 
     // favorite field
