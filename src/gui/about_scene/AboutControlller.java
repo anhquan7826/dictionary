@@ -1,4 +1,4 @@
-package gui.AboutUs;
+package gui.about_scene;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

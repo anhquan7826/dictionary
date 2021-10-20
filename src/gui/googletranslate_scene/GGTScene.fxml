@@ -10,24 +10,24 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="632.0" stylesheets="@../Translate.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.googletranslate_scene.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="632.0" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.googletranslate_scene.Controller">
    <top>
-      <AnchorPane prefHeight="370.0" prefWidth="615.0" stylesheets="@../Translate.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="370.0" prefWidth="615.0" stylesheets="@../Style.css" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="input" layoutX="27.0" layoutY="56.0" prefHeight="198.0" prefWidth="572.0" promptText="Nhập văn bản" styleClass="text-field" stylesheets="@../Translate.css" wrapText="true">
+            <TextArea fx:id="input" layoutX="27.0" layoutY="56.0" prefHeight="198.0" prefWidth="572.0" promptText="Nhập văn bản" styleClass="text-field" stylesheets="@../Style.css" wrapText="true">
                <font>
                   <Font size="22.0" />
                </font></TextArea>
-            <TextArea fx:id="output" layoutX="26.0" layoutY="263.0" prefHeight="213.0" prefWidth="574.0" promptText="Dịch" styleClass="text_field" stylesheets="@../Translate.css" wrapText="true">
+            <TextArea fx:id="output" layoutX="26.0" layoutY="263.0" prefHeight="213.0" prefWidth="574.0" promptText="Dịch" styleClass="text_field" stylesheets="@../Style.css" wrapText="true">
                <font>
                   <Font size="22.0" />
                </font>
             </TextArea>
-            <Button fx:id="trans" layoutX="343.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#translate" styleClass="button_translate" stylesheets="@../Translate.css" text="Translate">
+            <Button fx:id="trans" layoutX="343.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#translate" styleClass="button_translate" stylesheets="@../Style.css" text="Translate">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <RadioButton fx:id="EV" layoutX="26.0" layoutY="22.0" mnemonicParsing="false" selected="true" stylesheets="@../Translate.css" text="English - Vietnamese" />
+            <RadioButton fx:id="EV" layoutX="26.0" layoutY="22.0" mnemonicParsing="false" selected="true" text="English - Vietnamese" />
             <RadioButton fx:id="VE" layoutX="183.0" layoutY="22.0" mnemonicParsing="false" text="Vietnamese - English" />
             <Button fx:id="Speakinput" layoutX="36.0" layoutY="212.0" mnemonicParsing="false" onAction="#Speak_input">
                <graphic>

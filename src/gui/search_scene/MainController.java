@@ -193,7 +193,7 @@ public class MainController implements Initializable {
     public void openAboutUs(ActionEvent e) throws IOException {
         Stage tranStage = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../AboutUs/AboutUs.fxml"));
+        loader.setLocation(getClass().getResource("../about_scene/AboutUs.fxml"));
         Scene scene = new Scene(loader.load());
         tranStage.setScene(scene);
         tranStage.setTitle("About Us");
