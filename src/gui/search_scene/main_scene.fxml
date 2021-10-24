@@ -34,7 +34,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#openTranslateScene" text="Chuyển sang chế độ dịch" />
+                    <MenuItem mnemonicParsing="false" onAction="#openTranslateScene" text="Mở chế độ dịch văn bản" />
                         <MenuItem mnemonicParsing="false" text="Thoát" />
                   </items>
                 </Menu>
@@ -66,7 +66,7 @@
                            <children>
                               <HBox>
                                  <children>
-                                    <TextField fx:id="search" onKeyTyped="#showResultList" prefHeight="24.0" prefWidth="274.0" promptText="Tìm kiếm" />
+                                    <TextField fx:id="search" onKeyTyped="#showResultList" prefHeight="24.0" prefWidth="274.0" promptText="Tìm kiếm" styleClass="text-field" />
                                  </children>
                               </HBox>
                               <ListView fx:id="searchResult" onMouseClicked="#showResultItemOnSelect" prefHeight="568.0" prefWidth="239.0" />

@@ -19,7 +19,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Operate.initOperation();
         Parent root = FXMLLoader.load(getClass().getResource("gui/search_scene/main_scene.fxml"));
-        primaryStage.setTitle("Test");
+        primaryStage.setTitle("Dictionary");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         primaryStage.setOnCloseRequest(event -> {
