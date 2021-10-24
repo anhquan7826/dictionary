@@ -32,9 +32,9 @@ public class DictionaryMgr {
     }
 
     /**
-     * add a word to the dictionary.
-     * @param word word.
-     * @param meaning meaning.
+     * Add word to dictionary.
+     * @param target word target.
+     * @param explain word explain.
      */
     public void addWord(String target, String explain) {
         // replace entry if already exist.
@@ -46,18 +46,18 @@ public class DictionaryMgr {
     }
 
     /**
-     * get word
-     * @param key key
-     * @return value
+     * get word.
+     * @param key key.
+     * @return value.
      */
     public Word getWord(String key) {
         return data.get(key);
     }
 
     /**
-     * edit a word
-     * @param target word target
-     * @param explain word explain
+     * edit a word.
+     * @param target word target.
+     * @param explain word explain.
      */
     public void editWord(String target, String explain) {
         Word word = getWord(target);

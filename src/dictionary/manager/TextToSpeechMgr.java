@@ -39,8 +39,8 @@ public class TextToSpeechMgr {
             synthesizer.waitEngineState(
                     Synthesizer.QUEUE_EMPTY);
 
-            // Deallocate the Synthesizer. NEU THEM DONG NAY THI LOI (THEM THI SET DIEU KIEN STOP)
-//            synthesizer.deallocate();
+            // Deallocate the Synthesizer. (Need Set Stop condition)
+            // synthesizer.deallocate();
         }
 
         catch (Exception e) {

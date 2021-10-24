@@ -42,7 +42,7 @@ public class Controller implements Initializable {
         EV.setToggleGroup(group);
         VE.setToggleGroup(group);
     }
-
+    // Swap translate mode
     public void translate(MouseEvent mouseEvent) throws IOException{
         if (input.getText().isBlank()){
             return;
@@ -59,6 +59,7 @@ public class Controller implements Initializable {
             }
         }
     }
+
     public void Speak_input (ActionEvent event){
         Operate.TextToSpeech.Speak(input.getText());
     }

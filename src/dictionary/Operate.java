@@ -61,7 +61,6 @@ public class Operate {
          * @throws IOException
          */
         public static String translate(String langFrom, String langTo, String text) throws IOException {
-//            return trans.translate(langFrom, langTo, text);
             return TranslateMgr.translate(langFrom, langTo , text);
         }
     }
