@@ -40,6 +40,6 @@ Từ điển còn cung cấp chức năng dịch cả một đoạn văn, từ T
 
 ## Về
 Đây là bài tập lớn của lớp INT2204 23
-Nhóm gồm 2 thành viên:
-  Nguyễn Anh Quân - 20021415
-  Nguyễn Quang Hà - 
+Nhóm gồm 2 thành viên:<br />
+Nguyễn Anh Quân - 20021415<br />
+Nguyễn Quang Hà - <br />
