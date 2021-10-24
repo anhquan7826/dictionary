@@ -1,0 +1,17 @@
+.button_translate{
+    -fx-font-family: Cursive;
+    -fx-font-weight: bold;
+    -fx-background-color: #9786ef;
+    -fx-text-fill: white;
+}
+.button_translate:hover{
+    -fx-background-color: #a228f7;
+}
+
+.background{
+    -fx-background-color: lightskyblue ;
+}
+
+.text_field{
+    -fx-border-color: #e5e9ec;
+}
