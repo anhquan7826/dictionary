@@ -12,11 +12,13 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.web.HTMLEditor;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 public class EditController {
     private Word wordBeingEdited;
     private String mode;
+    WebView mainWebView;
 
     @FXML
     private Label wordIndicator = new Label();
@@ -34,6 +36,10 @@ public class EditController {
         this.mode = mode;
     }
 
+    public void setWebView(WebView main) {
+        mainWebView = main;
+    }
+
     public boolean saveConfirmationBox() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
@@ -44,6 +50,7 @@ public class EditController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
             Operate.Dictionary.editWord(mode, wordBeingEdited.getWord_target(), wordBeingEdited.getWord_explain());
+            mainWebView.getEngine().loadContent(wordBeingEdited.getWord_explain(), "text/html");
             return true;
         } else {
             return false;
@@ -52,7 +59,8 @@ public class EditController {
 
     public void saveButtonPressed(ActionEvent e) {
         Stage currentStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        wordBeingEdited.setWord_explain(editArea.getHtmlText());
+        wordBeingEdited.setWord_explain(editArea.getHtmlText().replace(" contenteditable=\"true\"", ""));
+        mainWebView.getEngine().loadContent(wordBeingEdited.getWord_explain(), "text/html");
         currentStage.close();
     }
 }

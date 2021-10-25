@@ -49,12 +49,12 @@ public class AddController {
             existStringAlert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
             Optional<ButtonType> result = existStringAlert.showAndWait();
             if (result.get() == buttonTypeYes) {
-                Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText());
+                Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText().replace(" contenteditable=\"true\"", ""));
                 Stage currentStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                 currentStage.close();
             }
         } else {
-            Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText());
+            Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText().replace(" contenteditable=\"true\"", ""));
             mainListView.getItems().setAll(Operate.Dictionary.getData(mode).keySet());
             Stage currentStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             currentStage.close();
@@ -70,7 +70,7 @@ public class AddController {
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
-            Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText());
+            Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText().replace(" contenteditable=\"true\"", ""));
             mainListView.getItems().setAll(Operate.Dictionary.getData(mode).keySet());
             return true;
         } else {

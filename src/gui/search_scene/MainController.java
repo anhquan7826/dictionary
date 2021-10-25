@@ -211,6 +211,7 @@ public class MainController implements Initializable {
         EditController editController = loader.getController();
         editController.setMode(dictChoice.getText());
         editController.setWord(wordBeingDisplayed);
+        editController.setWebView(viewWord);
         editStage.setTitle("Chỉnh sửa");
         editStage.setScene(scene);
         editStage.initModality(Modality.APPLICATION_MODAL);
