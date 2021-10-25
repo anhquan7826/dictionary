@@ -12,12 +12,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static void main(String[] args) {
+        Operate.initOperation();
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Operate.initOperation();
         Parent root = FXMLLoader.load(getClass().getResource("gui/search_scene/main_scene.fxml"));
         primaryStage.setTitle("Dictionary");
         primaryStage.setScene(new Scene(root));
