@@ -9,14 +9,16 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
 public class AddController {
-    @FXML
-    void initialize() {
+    ListView<String> mainListView;
 
+    public void setListView(ListView<String> lView) {
+        mainListView = lView;
     }
 
     private String mode;
@@ -53,6 +55,7 @@ public class AddController {
             }
         } else {
             Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText());
+            mainListView.getItems().setAll(Operate.Dictionary.getData(mode).keySet());
             Stage currentStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             currentStage.close();
         }
@@ -68,6 +71,7 @@ public class AddController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
             Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText());
+            mainListView.getItems().setAll(Operate.Dictionary.getData(mode).keySet());
             return true;
         } else {
             return false;

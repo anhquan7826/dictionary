@@ -86,7 +86,7 @@ public class MainController implements Initializable {
     private TextField search = new TextField();
 
     @FXML
-    private ListView<String> searchResult = new ListView<>();
+    public ListView<String> searchResult = new ListView<>();
 
     @FXML
     public void showResultList() {
@@ -231,6 +231,7 @@ public class MainController implements Initializable {
         Scene scene = new Scene(loader.load());
         AddController addController = loader.getController();
         addController.setMode(dictChoice.getText());
+        addController.setListView(searchResult);
         editStage.setTitle("Thêm từ mới");
         editStage.setScene(scene);
         editStage.initModality(Modality.APPLICATION_MODAL);
