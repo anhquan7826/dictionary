@@ -86,7 +86,7 @@ public class MainController implements Initializable {
     private TextField search = new TextField();
 
     @FXML
-    public ListView<String> searchResult = new ListView<>();
+    private ListView<String> searchResult = new ListView<>();
 
     @FXML
     public void showResultList() {
