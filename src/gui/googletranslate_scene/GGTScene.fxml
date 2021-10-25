@@ -18,12 +18,12 @@
                <font>
                   <Font size="22.0" />
                </font></TextArea>
-            <TextArea fx:id="output" layoutX="26.0" layoutY="263.0" prefHeight="213.0" prefWidth="574.0" promptText="Dịch" styleClass="text_field" stylesheets="@Style.css" wrapText="true">
+            <TextArea fx:id="output" editable="false" layoutX="26.0" layoutY="263.0" prefHeight="213.0" prefWidth="574.0" promptText="Dịch" styleClass="text_field" stylesheets="@Style.css" wrapText="true">
                <font>
                   <Font size="22.0" />
                </font>
             </TextArea>
-            <Button fx:id="trans" layoutX="521.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#translate" styleClass="button_translate" stylesheets="@Style.css" text="Translate">
+            <Button fx:id="trans" layoutX="512.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#translate" styleClass="button_translate" stylesheets="@Style.css" text="Translate">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
