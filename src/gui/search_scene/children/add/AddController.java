@@ -62,19 +62,23 @@ public class AddController {
     }
 
     public boolean saveConfirmationBox() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText("Bạn có muốn lưu không?");
-        ButtonType buttonTypeYes = new ButtonType("Đồng ý", ButtonData.YES);
-        ButtonType buttonTypeCancel = new ButtonType("Không", ButtonData.CANCEL_CLOSE);
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeYes) {
-            Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText().replace(" contenteditable=\"true\"", ""));
-            mainListView.getItems().setAll(Operate.Dictionary.getData(mode).keySet());
+        if (word_target.getText().isBlank()) {
             return true;
         } else {
-            return false;
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Bạn có muốn lưu không?");
+            ButtonType buttonTypeYes = new ButtonType("Đồng ý", ButtonData.YES);
+            ButtonType buttonTypeCancel = new ButtonType("Không", ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeYes) {
+                Operate.Dictionary.addWord(mode, word_target.getText(), word_explain.getHtmlText().replace(" contenteditable=\"true\"", ""));
+                mainListView.getItems().setAll(Operate.Dictionary.getData(mode).keySet());
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }
