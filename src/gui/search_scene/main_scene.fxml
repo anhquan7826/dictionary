@@ -32,20 +32,19 @@
             </MenuButton>
             <MenuBar prefHeight="27.0" prefWidth="666.0">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" text="Tùy chọn">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#openTranslateScene" text="Mở chế độ dịch văn bản" />
-                        <MenuItem mnemonicParsing="false" text="Thoát" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu mnemonicParsing="false" text="Chỉnh sửa">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#openAddWindow" text="Thêm từ mới" />
                         <MenuItem fx:id="openEditBox" mnemonicParsing="false" onAction="#openEditBoxWindow" text="Sửa từ đang chọn" />
                         <MenuItem mnemonicParsing="false" onAction="#deleteWordConfirmationBox" text="Xoá từ đang chọn" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu mnemonicParsing="false" text="Trợ giúp">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#openAboutUs" text="Về Từ điển này" />
                   </items>
