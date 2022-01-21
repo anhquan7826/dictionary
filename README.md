@@ -2,6 +2,7 @@
 
 ## Chức năng
 
+
 ### Tra từ điển
 Từ điển có hai chế độ tra từ Anh-Việt và Việt-Anh, sử dụng nút chuyển đổi ở góc trên bên trái.
 ![Screenshot from 2021-10-24 12-35-43](https://user-images.githubusercontent.com/78075693/138582815-0a430ebb-325a-42d3-bf1a-7dc829a301ce.png)
