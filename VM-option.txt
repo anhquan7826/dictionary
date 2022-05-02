@@ -1,0 +1,4 @@
+--module-path "path-to-javafx-sdk"\lib --add-modules javafx.controls,javafx.fxml
+--add-modules javafx.graphics,javafx.web
+
+Turn on javafx-configuration -> add VM options -> paste
